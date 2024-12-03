@@ -1,5 +1,5 @@
 ```
-MySQL 隔離級別有以下幾種：
+MySQL 隔離級別(Isolation Level)有以下幾種：
 
 讀未提交（Read Uncommitted）
   最低的隔離級別，允許讀取其他事務尚未提交的變更，可能導致髒讀（Dirty Read）。
