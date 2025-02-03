@@ -1,7 +1,7 @@
 ## 目錄
   - [基礎操作](#基礎)
-  - [映像檔(Image)操作](#Image)
-  - [容器(Container)操作](#Container)
+  - [Image](#Image)
+  - [Container](#Container)
   - [Volume](#Volume)
   - [Network](#Network)
   - [Docker Compose](#docker-compose)
