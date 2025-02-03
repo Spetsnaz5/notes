@@ -1,7 +1,9 @@
 ## 目錄
   - [基礎操作](#基礎)
-  - [容器(Container)操作](#Container)
   - [映像檔(Image)操作](#Image)
+  - [容器(Container)操作](#Container)
+  - [Volume)](#Volume)
+  - [Network)](#Network)
   - [Dockerfile](#Dockerfile)
   - [Docker Compose](#docker-compose)
 
@@ -19,27 +21,6 @@ docker logout
 查詢映像檔
 docker search ubuntu
     -f is-official=true #過濾指返回官方映像檔
-```
-
-## Container
-```
-查看運行中的 container
-docker ps
-    -a  # 所有容器包含停止
-
-啟動容器
-docker start <container-id>
-    -a  # 背景運作
-
-停止容器
-docker stop <container-id>
-
-重啟容器
-docker restart <container-id>
-
-刪除容器
-docker rm <container-id>
-    -f  # 強制刪除
 ```
 
 ## Image
@@ -63,22 +44,29 @@ docker rmi <image-name>
 docker run --rm <image-name> env
 ```
 
-
+## Container
 ```
+查看運行中的 container
+docker ps
+    -a  # 所有容器包含停止
 
+啟動容器
+docker start <container-id>
+    -a  # 背景運作
 
+停止容器
+docker stop <container-id>
 
+重啟容器
+docker restart <container-id>
 
+刪除容器
+docker rm <container-id>
+    -f  # 強制刪除
 
-
-建立儲存空間
-docker volume create <volume-name>
-
-顯示所有儲存空間
-docker volume ls
-
-刪除儲存空間
-docker volume rm <volume-name>
+查看容器內的資訊
+docker logs <container-id>
+    -f  #持續更新輸出
 
 建立並啟動容器
 docker run -it <images-name>
@@ -106,17 +94,22 @@ docker attach <container-id>
 
 進入容器(退出後不會停止容器)
 docker exec -it <container-id> /bin/bash
+```
 
-刪除容器
-docker rm <container-id>
-    -f  #強制刪除
+## Volume
+```
+建立儲存空間
+docker volume create <volume-name>
 
+顯示所有儲存空間
+docker volume ls
 
+刪除儲存空間
+docker volume rm <volume-name>
+```
 
-查看容器內的資訊
-docker logs <container-id>
-    -f  #持續更新輸出
-
+## Network
+```
 建立虛擬網路
 docker network create <network-name>
     --driver overlay
@@ -135,9 +128,6 @@ docker inspect <container-id> | findstr '"IPAddress"'
 
 容器共用實體位置
 docker inspect -f '{{.Mounts}}' <container-id>
-
-
-
 ```
 
 ## Dockerfile 
