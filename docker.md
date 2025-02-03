@@ -51,7 +51,7 @@ docker run --rm <image-name> env
 ## Container
 ```
 容器詳細資訊
-docker inspect <container_id>
+docker inspect <container-id>
 
 查看運行中的 container
 docker ps
