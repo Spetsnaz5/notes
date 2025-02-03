@@ -134,111 +134,9 @@ docker inspect <container-id> | findstr '"IPAddress"'
 docker inspect -f '{{.Mounts}}' <container-id>
 ```
 
-## Dockerfile 
-```
-建立 Dockerfile
-docker build -t <tag-name> <dockerfile-path>
-
-FROM  #docker 映像檔名稱
-
-MAINTAINER  #說明撰寫和維護人資訊
-
-RUN  #執行指令
-
-ARG  #設定參數(Dockerfile中使用)
-
-ENV  #設定環境變數(容器中使用)
-
-VOLUME  #持久化資料
-
-WORKDIR #設置工作目錄
-```
-
-```
-# PHP7.4
-FROM ubuntu:20.04
-
-RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    apache2 \
-    php7.4 \
-    libapache2-mod-php7.4 \
-    php7.4-mysql \
-    vim \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN sed -i 's/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
-
-COPY index.php /var/www/html/index.php
-
-#VOLUME ["/storage1", "/storage2", "/storage2"]
-
-#EXPOSE 80
-
-CMD ["apachectl", "-D", "FOREGROUND"]
-```
-
-```
-# PHP8.3
-FROM ubuntu:20.04
-
-RUN apt-get update \
-    && DEBIAN_FRONTEND=noninteractive apt-get install -y software-properties-common \
-    && add-apt-repository ppa:ondrej/php
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    php8.3 \
-    php8.3-cli php8.3-fpm php8.3-mysql php8.3-xml php8.3-mbstring php8.3-curl \
-    php8.3-zip php8.3-gd \
-    libapache2-mod-php8.3 \
-    vim \
-    && a2enmod php8.3
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    curl \
-    php-cli \
-    unzip \
-    && curl -sS https://getcomposer.org/installer -o composer-setup.php \
-    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer
-
-COPY index.php /var/www/html/index.php
-
-#EXPOSE 80
-
-CMD ["apachectl", "-D", "FOREGROUND"]
-```
-
-```
-# PYTHON3
-FROM ubuntu:latest
-
-ENV DEBIAN_FRONTEND=noninteractive    #設置環境變數，防止互動式安裝過程中要求輸入
-
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    python3-venv 
-
-RUN python3 -m venv /venv # 創建虛擬環境
-
-RUN /venv/bin/pip install --upgrade pip # 使用虛擬環境中的 pip 安裝套件
-RUN /venv/bin/pip install Django 
-
-#RUN mkdir -p /var/www/html 
-#WORKDIR /var/www/html
-
-#RUN /venv/bin/django-admin startproject mysite
-
-WORKDIR /var/www/html/mysite
-
-EXPOSE 8000
-
-CMD ["/venv/bin/python", "manage.py", "runserver", "0.0.0.0:8000"]
-```
-
 ## Docker Compose
 ```
-#執行yml檔
+執行所有yml檔
 docker-compose up -d
 
 顯示docker-compose安裝的images 
@@ -259,7 +157,7 @@ networks
     driver: <type>  #bridge:容器可以連接到這個網絡並與主機以及其他容器通信
 ```
 
-## docker-compose.yml
+## 範例 docker-compose.yml
 ```
 yml範例
 version: "3.8"
