@@ -1,9 +1,9 @@
 ## 目錄
-  - [容器 (Container) 操作](#容器 (Container))
+  - [容器 (Container) 操作](#Container)
   - [Dockerfile](#Dockerfile)
   - [Docker Compose](#docker-compose)
 
-## 容器 (Container)
+## Container
 ```
 查看運行中的 container
 docker ps
