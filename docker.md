@@ -1,8 +1,25 @@
 ## 目錄
+  - [基礎操作](#基礎)
   - [容器(Container)操作](#Container)
   - [映像檔(Image)操作](#Image)
   - [Dockerfile](#Dockerfile)
   - [Docker Compose](#docker-compose)
+
+## 基礎
+```
+查詢版本
+docker version
+
+登入docker hub
+docker login
+
+登出docker hub
+docker logout
+
+查詢映像檔
+docker search ubuntu
+    -f is-official=true #過濾指返回官方映像檔
+```
 
 ## Container
 ```
@@ -48,18 +65,7 @@ docker run --rm <image-name> env
 
 
 ```
-查詢版本
-docker version
 
-登入docker hub
-docker login
-
-登出docker hub
-docker logout
-
-查詢映像檔
-docker search ubuntu
-    -f is-official=true #過濾指返回官方映像檔
 
 
 
