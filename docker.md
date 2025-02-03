@@ -1,5 +1,6 @@
 ## 目錄
-  - [Container 操作](#Container)
+  - [容器(Container)操作](#Container)
+  - [映像檔(Image)操作](#Image)
   - [Dockerfile](#Dockerfile)
   - [Docker Compose](#docker-compose)
 
@@ -24,6 +25,26 @@ docker rm <container-id>
     -f  # 強制刪除
 ```
 
+## Image
+```
+列出本機images
+docker images
+
+取得images
+docker pull <images-name>
+
+推至docker hub
+docker push <username>/<images-name>
+
+建立標籤
+docker tag <source-images> <target-images>
+
+刪除映像檔
+docker rmi <image-name>
+
+查看env並刪除
+docker run --rm <image-name> env
+```
 
 
 ```
@@ -40,22 +61,7 @@ docker logout
 docker search ubuntu
     -f is-official=true #過濾指返回官方映像檔
 
-列出本機images
-docker images
 
-取得images
-docker pull <images-name>
-
-建立標籤
-docker tag <source-images> <target-images>
-
-推至docker hub
-docker push <username>/<images-name>
-
-
-
-建立容器
-docker create <images-name>
 
 
 
@@ -99,8 +105,7 @@ docker exec -it <container-id> /bin/bash
 docker rm <container-id>
     -f  #強制刪除
 
-刪除映像檔
-docker rmi <image-name>
+
 
 查看容器內的資訊
 docker logs <container-id>
@@ -125,8 +130,7 @@ docker inspect <container-id> | findstr '"IPAddress"'
 容器共用實體位置
 docker inspect -f '{{.Mounts}}' <container-id>
 
-查看env並刪除
-docker run --rm <image-name> env
+
 
 ```
 
