@@ -21,6 +21,10 @@ docker logout
 查詢映像檔
 docker search ubuntu
     -f is-official=true #過濾指返回官方映像檔
+
+# 查看容器資源使用情況
+docker stats
+
 ```
 
 ## Image
@@ -46,6 +50,9 @@ docker run --rm <image-name> env
 
 ## Container
 ```
+容器詳細資訊
+docker inspect <container_id>
+
 查看運行中的 container
 docker ps
     -a  # 所有容器包含停止
@@ -119,9 +126,6 @@ docker network ls
 
 容器加入虛擬網路
 docker network connect <network-name> <container-name or container-id>
-
-容器訊息
-docker inspect <container-id>
 
 容器IP
 docker inspect <container-id> | findstr '"IPAddress"'
