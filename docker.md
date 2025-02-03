@@ -8,6 +8,20 @@
 查看運行中的 container
 docker ps
     -a  # 所有容器包含停止
+
+啟動容器
+docker start <container-id>
+    -a  # 背景運作
+
+停止容器
+docker stop <container-id>
+
+重啟容器
+docker restart <container-id>
+
+刪除容器
+docker rm <container-id>
+    -f  # 強制刪除
 ```
 
 
@@ -43,15 +57,7 @@ docker push <username>/<images-name>
 建立容器
 docker create <images-name>
 
-啟動容器
-docker start <container-id>
-    -a  #前景觀看輸出
 
-停止容器
-docker stop <container-id>
-
-重啟容器
-docker restart <container-id>
 
 建立儲存空間
 docker volume create <volume-name>
