@@ -1,8 +1,17 @@
 ## 目錄
+  - [容器 (Container) 操作](#Container)
   - [Dockerfile](#Dockerfile)
   - [Docker Compose](#docker-compose)
 
-## 基礎
+## Container
+```
+查看運行中的 container
+docker ps
+    -a  # 所有容器包含停止
+```
+
+
+
 ```
 查詢版本
 docker version
@@ -29,9 +38,7 @@ docker tag <source-images> <target-images>
 推至docker hub
 docker push <username>/<images-name>
 
-查看運行中的 container
-docker ps
-    -a  #所有container
+
 
 建立容器
 docker create <images-name>
