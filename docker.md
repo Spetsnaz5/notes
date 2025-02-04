@@ -22,7 +22,7 @@ docker logout
 docker search ubuntu
     -f is-official=true #過濾指返回官方映像檔
 
-# 查看容器資源使用情況
+查看容器資源使用情況
 docker stats
 
 ```
