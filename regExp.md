@@ -2,17 +2,16 @@
 | :------------- | ------------- |
 | \ | 將下一個字元標記為一個特殊字元或一個原義字元或一個向後參照（backreferences）或一個八進制跳脫符。 <br> 例如，「n」符合字元「n」。「\n」符合一個換行符。序列「\\」符合「\」而「\(」則符合「(」 |
 | ^ | 符合輸入字串的開始位置。如果設定了RegExp物件的Multiline屬性，^也符合「\n」或「\r」之後的位置 |
-| ^ | xxx |
-| ^ | xxx |
-| ^ | xxx |
-| ^ | xxx |
+| $ | 符合輸入字串的結束位置。如果設定了RegExp物件的Multiline屬性，$也符合「\n」或「\r」之前的位置。 |
+| * | 符合前面的子表達式零次或多次。例如，zo*能符合「z」、「zo」以及「zoo」。*等價於{0,}。 |
+| + | 符合前面的子表達式一次或多次。例如，「zo+」能符合「zo」以及「zoo」，但不能符合「z」。+等價於{1,}。 |
+| ? | 符合前面的子表達式零次或一次。例如，「do(es)?」可以符合「does」中的「do」和「does」。?等價於{0,1}。 |
 
-| Topic | Learning Links |
-| ----- | ----- |
-| **Routing and Controllers: Basics** | :question: [Let's Test Your Laravel Routing Skills: Complete 12 Tasks](https://www.youtube.com/watch?v=pENlD3izA3Q) |
-| Callback Functions and Route::view() |:book: [Basic Routing](https://laravel.com/docs/routing#basic-routing) <br>:book: [View Routes](https://laravel.com/docs/routing#view-routes) <br>|
-| Routing to a Single Controller Method |:book: [Basic Controllers with Routes](https://laravel.com/docs/controllers#basic-controllers) <br>|
-| Route Parameters |:book: [Route Parameters](https://laravel.com/docs/routing#route-parameters) <br>|
-| Route Naming |:book: [Names Routes](https://laravel.com/docs/routing#named-routes) <br> :clapper: [Laravel: Why You Need Route Names?](https://www.youtube.com/watch?v=7lalb6HtR1c) <br>|
-| Route Groups |:book: [Route Groups](https://laravel.com/docs/routing#route-groups) <br> :clapper: [Laravel Route Grouping: Simple to Very Complex](https://www.youtube.com/watch?v=I6kyfSmPhn8) <br> :clapper: [More videos](videos/route-groups.md) |
-| **Blade Basics** | :question: [Let's Test Your Laravel Blade Skills: Complete 8 Tasks](https://www.youtube.com/watch?v=P8s7UHuUhbg)<br>:clapper: [9 Quick Tips about Laravel Blade](https://www.youtube.com/watch?v=-Glz1InN68o) <br>|
+
+
+
+{n}	n是一個非負整數。符合確定的n次。例如，「o{2}」不能符合「Bob」中的「o」，但是能符合「food」中的兩個o。
+{n,}	n是一個非負整數。至少符合n次。例如，「o{2,}」不能符合「Bob」中的「o」，但能符合「foooood」中的所有o。「o{1,}」等價於「o+」。「o{0,}」則等價於「o*」。
+{n,m}	m和n均為非負整數，其中n<=m。最少符合n次且最多符合m次。例如，「o{1,3}」將符合「fooooood」中的前三個o。「o{0,1}」等價於「o?」。請注意在逗號和兩個數之間不能有空格。
+?	非貪心量化（Non-greedy quantifiers）：當該字元緊跟在任何一個其他重複修飾詞（*,+,?，{n}，{n,}，{n,m}）後面時，符合模式是非貪婪的。非貪婪模式儘可能少的符合所搜尋的字串，而預設的貪婪模式則儘可能多的符合所搜尋的字串。例如，對於字串「oooo」，「o+?」將符合單個「o」，而「o+」將符合所有「o」。
+.	符合除「\r」「\n」之外的任何單個字元。要符合包括「\r」「\n」在內的任何字元，請使用像「(.|\r|\n)」的模式。
