@@ -1,6 +1,12 @@
+| 系統 | 帳密 |
+| :------------- | -------------: |
+| [wmsext-panel](https://lms.agroup.tw/wmsext-panel/web/login) | Engineer1  |
+| [wmsext-panel - dev](https://lms.agroup.tw/wmsext-panel/web/login) | Engineer1  |
+| [PhpMyAdmin](https://lms-phpmy.agroup.tw/phpmyadmin) | lms  |
+
 ```
-|  系統 | 帳密 |
-| ------------- |:-------------:|
+| 系統 | 帳密 |
+| :------------- | -------------: |
 | [wmsext-panel](https://lms.agroup.tw/wmsext-panel/web/login) | Engineer1  |
 | [wmsext-panel - dev](https://lms.agroup.tw/wmsext-panel/web/login) | Engineer1  |
 | [PhpMyAdmin](https://lms-phpmy.agroup.tw/phpmyadmin) | lms  |
