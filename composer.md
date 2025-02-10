@@ -11,8 +11,6 @@ composer require <vendor/package>
 # 只在開發階段需要套件
 composer require phpunit/phpunit --dev
 
-制套件版本更新範圍（鎖定版本）
-
 # 限制套件版本更新範圍（鎖定版本） ^2.0: 接受 2.x 版本的更新，但不會升級到 3.x。
 composer require monolog/monolog:^2.0
 
