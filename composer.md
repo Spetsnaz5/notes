@@ -1,1 +1,55 @@
+```
+# 查詢版本
+composer --version
 
+# 初始化專案
+composer init
+
+# 安裝特定套件
+composer require <vendor/package>
+
+# 只在開發階段需要套件
+composer require phpunit/phpunit --dev
+
+# 更新所有套件
+composer update
+
+# 更新特定套件
+composer update <vendor/package>
+
+# 移除套件
+composer remove <vendor/package>
+
+# 重新產生 autoload 檔案
+composer dump-autoload
+
+# 顯示已安裝的所有套件
+composer show
+
+# 檢查有哪些套件有新版本
+composer outdated
+```
+
+```
+composer.json 文件範例
+
+{
+    "name": "myproject/app",
+    "description": "A simple PHP project using Composer",
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}
+
+require: 正式環境需要的套件。
+require-dev: 開發環境需要的套件。
+autoload: 定義自動加載的命名空間。
+```
