@@ -1,4 +1,12 @@
 ```
+|  系統 | 帳密 |
+| ------------- |:-------------:|
+| [wmsext-panel](https://lms.agroup.tw/wmsext-panel/web/login) | Engineer1  |
+| [wmsext-panel - dev](https://lms.agroup.tw/wmsext-panel/web/login) | Engineer1  |
+| [PhpMyAdmin](https://lms-phpmy.agroup.tw/phpmyadmin) | lms  |
+
+
+
 字元	描述
 \	將下一個字元標記為一個特殊字元（File Format Escape，清單見本表）、或一個原義字元（Identity Escape，有「^$()*+?.[\{|」共計12個）、或一個向後參照（backreferences）、或一個八進制跳脫符。例如，「n」符合字元「n」。「\n」符合一個換行符。序列「\\」符合「\」而「\(」則符合「(」。
 ^	符合輸入字串的開始位置。如果設定了RegExp物件的Multiline屬性，^也符合「\n」或「\r」之後的位置。
