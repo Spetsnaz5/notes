@@ -11,6 +11,14 @@ composer require <vendor/package>
 # 只在開發階段需要套件
 composer require phpunit/phpunit --dev
 
+制套件版本更新範圍（鎖定版本）
+
+# 限制套件版本更新範圍（鎖定版本） ^2.0: 接受 2.x 版本的更新，但不會升級到 3.x。
+composer require monolog/monolog:^2.0
+
+# 安裝指定版本套件
+composer require guzzlehttp/guzzle:7.0.1
+
 # 更新所有套件
 composer update
 
@@ -28,6 +36,12 @@ composer show
 
 # 檢查有哪些套件有新版本
 composer outdated
+
+# 建立新專案並安裝套件，常用於框架專案（例如 Laravel）
+composer create-project <vendor/package>
+
+# 檢查 composer.json 格式是否正確，避免語法錯誤
+composer validate
 ```
 
 ```
