@@ -110,15 +110,29 @@ hget key field
 取得key所有field
 hgetall key
 
-將key field中的數字+x
+將key field中的數字+x(浮點數字)
 hincrby key field x
+
+將key field中的數字+x
+hincrbyfloat key field x
 
 查詢符合 pattern key
 hkeys key
 
-設定 key field value
+取得key field數量
+hlen key
+
+取得key多個field
+hmget key field [field2 field3 ...]
+
+設定key field value
 hset key field value
 
+設定key多個field value
+hmset key field value field2 value2 [field3 value3 ...]
+
+設定key field value(具原子性 key必須都不存在)
+hsetnx key field value
 ```
 
 ## List
