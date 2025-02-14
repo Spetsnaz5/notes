@@ -89,6 +89,9 @@ decrby key x
 
 對key字尾追加字串
 append key value
+
+取得key所有value
+hvals key
 ```
 
 ## Hash
