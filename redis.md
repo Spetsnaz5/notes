@@ -10,7 +10,6 @@ del key
 exists key
 
 設定key過期時間(秒)
-設定key過期時間
 expire key seconds
 
 設定key過期時間(毫秒)
@@ -20,15 +19,12 @@ pexpire key milliseconds
 keys pattern
 
 移動key至其他資料庫
-移動key 至其他資料庫
 move key db
 
 移除key過期時間
-移除key 過期時間
 persist key
 
 回傳剩餘時間(秒)
-回傳剩餘時間
 ttl key
 
 回傳剩餘時間(毫秒)
