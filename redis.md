@@ -45,14 +45,32 @@ rename key newkey
   計數器：實現網站的點擊量計數、視頻播放次數計數等。
   配置管理：儲存配置參數和簡單的鍵值對數據。
 
-設定 key
+設定key
 set key value [Ex seconds]
 
-取得 key
+取得key
 get key
+
+取得key字串範圍
+getrange key start end
+
+設定key value並返回舊value
+getset key value
 
 取得多個key
 mget key [key2...]
+
+設定key與過期時間
+setex key seconds value
+
+返回key長度
+strlen key
+
+設定多個key value
+mset key value [key2 value ....]
+
+設定多個key value(具原子性 key必須都不存在)
+msetnx key value [key2 value ....]
 
 將key中的數字+1
 incr key
@@ -60,12 +78,17 @@ incr key
 將key中的數字+x
 incrby key x
 
+將key中的數字+x(浮點數字)
+Incrbyfloat key x
+
 將key中的數字-1
 decr key
 
 將key中的數字-x
 decrby key x
 
+對key字尾追加字串
+append key value
 ```
 
 ## Hash
