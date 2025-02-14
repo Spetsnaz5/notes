@@ -195,6 +195,7 @@ lset key index value
 
 對列表修剪只保留範圍內個元素
 ltrim ket start stop
+
 ```
 
 ## Set
@@ -234,6 +235,9 @@ srandmember key count
 
 移除一個或多個元素
 srem key member [member2 ...]
+
+迭代集合所有元素
+sscan key cursor [MATCH pattern] [COUNT count]
 ```
 
 ## Sorted Set
@@ -243,5 +247,66 @@ srem key member [member2 ...]
   排行榜：實現遊戲中的高分榜，按分數排序。
   優先級隊列：儲存具有優先級的任務，如定時任務。
   時間序列數據：儲存時間戳和事件對，如股票價格、傳感器數據。
+
+將一個或多個元素加至集合中
+zadd key score value score2 value2 [score3 value3 ...]
+
+集合元素數量
+zcard key
+
+分數區間元素數量
+zcount key min max
+
+指定元素的分數 +increment
+zincrby key increment member
+
+多個集合的交集，將結果存入新集合中
+zinterstore destination numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE sum|min|max]
+
+集合字典區間元素數量
+zlexcount key min max
+
+集合分數區間元素
+zrange key start stop [WITHSCORES]
+
+按照字典序（lexicographical order）取得範圍元素
+zrangebylex key min max [LIMIT offset count]
+
+集合中指定分數區間的元素，按照分數遞增排序
+zrangebyscore key min max [WITHSCORES] [LIMIT offset count]
+
+集合指定元數排名
+zrank key member
+
+移除集合一個或多個元素
+zrem key member [member ...]
+
+移除集合中字典區間的元素
+zremrangebylex key min max
+
+移除集合指定排名區間內元素
+zremrangebyrank key start stop
+
+移除集合指定分數區間元素
+zremrangebyscore key min max
+
+集合區間元素(遞減)
+zrevrange key start stop [WITHSCORES]
+
+集合中指定分數區間的元素，按照分數遞減排序
+zrevrangebyscore key max min [WITHSCORES] [LIMIT offset count]
+
+集合指定元數排名(遞減)
+zrevrank key member
+
+集合元素的分數
+zscore key member
+
+一個或多個集合聯集，新增至destination
+zunionstore destination numkeys key [key ...] [WEIGHTS weight [weight ...]] [AGGREGATE SUM|MIN|MAX]
+
+迭代集合中的元素
+zscan key cursor [MATCH pattern] [COUNT count]
+
 ```
 
