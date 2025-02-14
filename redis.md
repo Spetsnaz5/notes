@@ -90,8 +90,6 @@ decrby key x
 對key字尾追加字串
 append key value
 
-取得key所有value
-hvals key
 ```
 
 ## Hash
@@ -136,6 +134,10 @@ hmset key field value field2 value2 [field3 value3 ...]
 
 設定key field value(具原子性 key必須都不存在)
 hsetnx key field value
+
+取得key所有value
+hvals key
+
 ```
 
 ## List
