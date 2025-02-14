@@ -225,6 +225,15 @@ sismember key member
 
 回傳集合所有成員
 smembers key
+
+隨機移除一個元素
+spop key
+
+隨機返回count數量元素
+srandmember key count
+
+移除一個或多個元素
+srem key member [member2 ...]
 ```
 
 ## Sorted Set
