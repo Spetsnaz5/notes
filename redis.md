@@ -148,8 +148,20 @@ hvals key
   最新活動：儲存最新的用戶活動記錄，如評論、帖子等。
   排行榜：儲存實時更新的排行榜數據。
 
+取得多個List第一個元素
+blpop List List2 [List3 ...] seconds
+
+取得多個List最後一個元素
+brpop List List2 [List3 ...] seconds
+
+取得List最後一個元素，插入至另一個List至首位
+brpoplpush List List2
+
 獲得列表索引中的元素
 lindex key index
+
+在列表中的元素前或後插入元素
+linsert key BEFORE|AFTER pivot value
 
 獲得列表範圍索引的元素
 lrange key start end
@@ -163,11 +175,26 @@ lpop key
 將一個或多個加入列表頭部
 lpush key value [value2...]
 
+將一個或多個加入列表頭部，必須存在key
+lpushx key value [value2...]
+
 移出並獲取列表最後一個元素
 rpop key
 
+移除List最後一個元素，插入至另一個List至首位
+rpoplpush source_key destination_key
+
 將一個或多個加入列表尾部
 rpush key value [value2...]
+
+將一個或多個加入列表尾部，必須存在key
+rpushx key value [value2...]
+
+透過索引設定元素
+lset key index value
+
+對列表修剪只保留範圍內個元素
+ltrim ket start stop
 ```
 
 ## Set
