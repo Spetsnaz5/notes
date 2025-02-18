@@ -6,6 +6,9 @@ git init
 複製遠端的 Repository 檔案到本地端
 git clone [Repository URL]
 
+與遠端倉庫建立連接
+git remote add [Repository URL]
+
 檢查本地端檔案異動狀態
 git status
 
