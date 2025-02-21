@@ -132,4 +132,7 @@ service --status-all
 Windows 進入wsl2
 explorer.exe . #或者在windows資料夾路徑改\\wsl$\Ubuntu
 
+啟用apache mod_rewrite 模組
+a2enmod rewrite
+
 ```
