@@ -15,6 +15,9 @@ git status
 查看先前的 commit 記錄
 git log
 
+查看HEAD變更記錄
+git reflog
+
 顯示所有標籤
 git tag
 
