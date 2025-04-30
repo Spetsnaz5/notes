@@ -32,6 +32,11 @@ mv file /new/path
 
 ```
 
+## tree 查看資料夾與檔案的樹狀結構
+```
+```
+
+
 ## 檔案內容處理
 ```
 分頁顯示檔案內容
@@ -135,8 +140,4 @@ explorer.exe . #或者在windows資料夾路徑改\\wsl$\Ubuntu
 啟用apache mod_rewrite 模組(/etc/apache2/apache2.conf改AllowOverride All)
 a2enmod rewrite
 
-```
-
-## tree
-```
 ```
