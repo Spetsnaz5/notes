@@ -136,3 +136,7 @@ explorer.exe . #或者在windows資料夾路徑改\\wsl$\Ubuntu
 a2enmod rewrite
 
 ```
+
+## tree
+```
+```
