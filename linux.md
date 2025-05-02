@@ -29,7 +29,6 @@ cp -r source_directory destination_directory   # 遞迴複製目錄
 移動或重新命名檔案或目錄
 mv old_name new_name
 mv file /new/path
-
 ```
 
 ## 檔案內容處理
