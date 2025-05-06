@@ -7,13 +7,34 @@ ls [選項] [目錄或檔案]
 - /path/to/dir	查看特定目錄內容
 
 ```
+cd [目錄路徑]
+```
+- .. 回到上一層目錄
+- ../.. 回到上上層目錄
+- /path/to/dir	切換到指定的絕對路徑
+- dir_name	切換到相對路徑中的資料夾
 
-切換至該目錄
-cd /
-cd ..    #上一層目錄
+```
+mkdir [選項] 目錄名稱
+```
+- new_folder	建立一個名為 new_folder 的資料夾
+- folder1 folder2	一次建立多個資料夾
+- -p a/b/c	遞迴建立多層資料夾（如果 a 或 b 不存在也會自動建立）
+- -m 755 folder	建立資料夾並設定權限（如 755）
 
-顯示當前目錄
-pwd
+
+mkdir 
+mkdir 
+mkdir 
+mkdir -v folder	顯示建立過程（verbose 模式）
+mkdir 
+
+
+
+
+
+
+
 
 建立目錄
 mkdir directory
@@ -34,6 +55,9 @@ cp -r source_directory destination_directory   # 遞迴複製目錄
 移動或重新命名檔案或目錄
 mv old_name new_name
 mv file /new/path
+
+顯示當前目錄
+pwd
 ```
 
 ## 檔案內容處理
