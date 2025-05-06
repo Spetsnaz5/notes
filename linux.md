@@ -86,6 +86,10 @@ tail [選項] [檔案名稱]  看檔案最後幾行內容
 
 
 
+
+
+
+
 搜尋檔案或輸出內容
 grep 'abc' file
 grep -rnw --include="*.php" 877 /var/www/html | grep -v 'vendor'
