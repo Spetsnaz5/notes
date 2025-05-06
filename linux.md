@@ -1,4 +1,4 @@
-### 檔案和目錄操作
+## 檔案和目錄操作
 ```
 ls [選項] [目錄或檔案] 
 ```
@@ -22,19 +22,14 @@ mkdir [選項] 目錄名稱
 - -p a/b/c	遞迴建立多層資料夾（如果 a 或 b 不存在也會自動建立）
 - -m 755 folder	建立資料夾並設定權限（如 755）
 
+```
+cat [選項] [檔案名稱...]
+```
+- filename	顯示 filename 的內容
+- -n  顯示內容並加上行號
 
 
 
-
-
-
-
-建立目錄
-mkdir directory
-mkdir -p parent-directory/new-directory    #遞迴建立
-
-建立檔案
-cat > example.txt
 
 刪除檔案或目錄
 rm file
