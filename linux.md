@@ -91,7 +91,7 @@ tail [選項] [檔案名稱]  看檔案最後幾行內容
 ---
 
 ```
-grep [選項] '搜尋模式' [檔案名稱]  檔案中搜尋並列出符合指定模式 (檔案名稱可搭配 pattern) (zgrep	用於 .gz 壓縮檔案中的搜尋)
+grep [選項] '搜尋模式' [檔案名稱]  檔案中搜尋並列出符合指定模式 (檔案名稱可搭配 pattern、zgrep 用於 .gz 壓縮檔案中的搜尋)
 ```
 - 'pattern' filename	在 filename 中搜尋 pattern（不區分大小寫）
 - -v 排除不符合 pattern 的行（反向搜尋）
