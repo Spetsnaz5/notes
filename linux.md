@@ -159,4 +159,10 @@ explorer.exe . #或者在windows資料夾路徑改\\wsl$\Ubuntu
 
 啟用apache mod_rewrite 模組(/etc/apache2/apache2.conf改AllowOverride All)
 a2enmod rewrite
+
+echo	顯示字串或寫入檔案	echo "hello" > hi.txt
+man	查詢指令說明手冊	man cp
+which / whereis	找出執行檔路徑	which php
+clear	清除終端機畫面	clear
+history	顯示輸入過的指令記錄	history
 ```
