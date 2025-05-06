@@ -93,6 +93,25 @@ tail [選項] [檔案名稱]  看檔案最後幾行內容
 ```
 grep [選項] '搜尋模式' [檔案名稱]  檔案中搜尋並列出符合指定模式
 ```
+- filename 顯示檔案最後 10 行（預設）
+- 'pattern' filename	在 filename 中搜尋 pattern（不區分大小寫）
+- -v 顯示不符合 pattern 的行（反向搜尋）
+- -r 'pattern' dir/	遞歸搜尋目錄中的檔案
+- -l 'pattern' filename	顯示包含 pattern 的檔案名（不顯示具體內容）
+- -n 'pattern' filename	顯示符合 pattern 的行及其行號
+- -c 'pattern' filename	顯示符合 pattern 的行數
+- -o 'pattern' filename	只顯示符合的文字，並不顯示整行
+- -H 'pattern' filename	顯示符合 pattern 的行及其檔案名
+- -w 'pattern' filename	精確匹配整個字詞，而不僅是包含該字詞的行
+- -E 'pattern' filename	支援擴展正規表達式（grep 預設使用基本正規表達式）
+- -A 3 'pattern' filename	顯示匹配行及其後 3 行
+- -B 3 'pattern' filename	顯示匹配行及其前 3 行
+- -C 3 'pattern' filename	顯示匹配行及其前後 3 行（上下文行）
+---
+
+
+
+
 
 
 
