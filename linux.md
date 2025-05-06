@@ -73,14 +73,18 @@ less [檔案名稱]  分頁顯示檔案內容
 |	-N  |  顯示行號（執行 less -N filename）
 
 ```
-分頁顯示檔案內容
-less file
+tail [選項] [檔案名稱]  看檔案最後幾行內容
+```
+- filename 顯示檔案最後 10 行（預設）
+- -n k filename	顯示最後 k 行
+- -f filename	持續監控檔案變化（像 log 檔）
+- -F filename	類似 -f，但檔案被移動或重建時會自動追蹤
+- -c k filename	顯示最後 k 個位元組（字元）
+- -q file1 file2	同時查看多檔，不顯示檔名標題
+- -v file1 file2	同時查看多檔，強制顯示檔名標題
 
-持續輸出檔案最後幾行內容
-tail -n 10 file
 
--n k  #顯示最後k行
--f  #持續輸出檔案內容
+
 
 搜尋檔案或輸出內容
 grep 'abc' file
