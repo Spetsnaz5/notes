@@ -23,13 +23,6 @@ mkdir [選項] 目錄名稱
 - -m 755 folder	建立資料夾並設定權限（如 755）
 
 
-mkdir 
-mkdir 
-mkdir 
-mkdir -v folder	顯示建立過程（verbose 模式）
-mkdir 
-
-
 
 
 
