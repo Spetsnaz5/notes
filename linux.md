@@ -91,11 +91,10 @@ tail [選項] [檔案名稱]  看檔案最後幾行內容
 ---
 
 ```
-grep [選項] '搜尋模式' [檔案名稱]  檔案中搜尋並列出符合指定模式
+grep [選項] '搜尋模式' [檔案名稱]  檔案中搜尋並列出符合指定模式 (檔案名稱可搭配 pattern) (zgrep	用於 .gz 壓縮檔案中的搜尋)
 ```
-- filename 顯示檔案最後 10 行（預設）
 - 'pattern' filename	在 filename 中搜尋 pattern（不區分大小寫）
-- -v 顯示不符合 pattern 的行（反向搜尋）
+- -v 排除不符合 pattern 的行（反向搜尋）
 - -r 'pattern' dir/	遞歸搜尋目錄中的檔案
 - -l 'pattern' filename	顯示包含 pattern 的檔案名（不顯示具體內容）
 - -n 'pattern' filename	顯示符合 pattern 的行及其行號
@@ -107,6 +106,8 @@ grep [選項] '搜尋模式' [檔案名稱]  檔案中搜尋並列出符合指�
 - -A 3 'pattern' filename	顯示匹配行及其後 3 行
 - -B 3 'pattern' filename	顯示匹配行及其前 3 行
 - -C 3 'pattern' filename	顯示匹配行及其前後 3 行（上下文行）
+- --color=auto 顏色突顯符合的關鍵字
+- --include="*.txt" 搜尋特定類型檔案
 ---
 
 
@@ -118,17 +119,13 @@ grep [選項] '搜尋模式' [檔案名稱]  檔案中搜尋並列出符合指�
 
 
 
-
-
-搜尋檔案或輸出內容
-grep 'abc' file
 grep -rnw --include="*.php" 877 /var/www/html | grep -v 'vendor'
 zgrep
 
 -n  #顯示匹配行的行號 
 -r  #遞迴搜尋目錄 
 -v  #反向匹配，顯示不包含匹配模式的行 
---include="*.txt"  #搜尋特定類型檔案
+
 --color  #高亮顯示匹配模式
 -c  #顯示匹配行的計數 
 -e  #指定多個搜索模式 grep -e "cat" -e "dog" file.txt
