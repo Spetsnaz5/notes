@@ -45,7 +45,7 @@ cp [選項] 原始路徑 目標路徑
 mv [選項] 原始名稱 目標名稱
 ```
 - file /home/user/  將 file 移動到 /home/user/ 資料夾
-- oldname newname	將檔案重新命名
+- oldname newname	將檔案重新命名 oldname => newname
 - folder1/ folder2/	將 folder1 移動到 folder2 裡面（若存在）
 - -i file backup	移動前詢問是否覆蓋現有檔案
 - -u file backup	只有當來源檔案較新時才會覆蓋目標檔案
