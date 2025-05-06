@@ -38,22 +38,24 @@ cp [選項] 原始路徑 目標路徑
 - file backup 複製 file 為 backup
 - file /home/user/	將 file 複製到 /home/user/ 資料夾
 - -i file backup	複製時如目標檔案存在，會提示是否覆蓋
-- -r folder1/ folder2/	遞迴複製資料夾（含內容）到 folder2/
+- -r folder1/ folder2/	遞迴複製資料夾 folder1（含內容）到 folder2/
 - -u file backup	僅在原始檔案較新時才覆蓋目標檔案
 
+```
+mv [選項] 原始名稱 目標名稱
+```
+- file /home/user/  將 file 移動到 /home/user/ 資料夾
+- oldname newname	將檔案重新命名
+- folder1/ folder2/	將 folder1 移動到 folder2 裡面（若存在）
+- -i file backup	移動前詢問是否覆蓋現有檔案
+- -u file backup	只有當來源檔案較新時才會覆蓋目標檔案
+
+### 其他
+```
+pwd 顯示當前目錄
+```
 
 
-
-複製檔案或目錄
-cp source_file destination
-cp -r source_directory destination_directory   # 遞迴複製目錄
-
-移動或重新命名檔案或目錄
-mv old_name new_name
-mv file /new/path
-
-顯示當前目錄
-pwd
 ```
 
 ## 檔案內容處理
