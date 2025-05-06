@@ -50,10 +50,7 @@ mv [選項] 原始名稱 目標名稱
 - -i file backup	移動前詢問是否覆蓋現有檔案
 - -u file backup	只有當來源檔案較新時才會覆蓋目標檔案
 
-### 其他
-```
-pwd 顯示當前目錄
-```
+
 
 
 ## 檔案內容處理
@@ -145,6 +142,9 @@ sudo apt-get remove package_name  # 刪除軟體
 
 ## 其他
 ```
+顯示當前目錄
+pwd 
+
 查詢版本
 uname -a
 
@@ -159,5 +159,4 @@ explorer.exe . #或者在windows資料夾路徑改\\wsl$\Ubuntu
 
 啟用apache mod_rewrite 模組(/etc/apache2/apache2.conf改AllowOverride All)
 a2enmod rewrite
-
 ```
