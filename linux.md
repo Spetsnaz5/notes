@@ -193,16 +193,34 @@ chown [選項] 使用者[:群組] [檔案或目錄] 變更檔案或資料夾的�
 
 ## 網路相關
 ```
-測試網路連接
-ping example.com
+待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補
 
-使用ssh連至遠端主機
-ssh user@host -p port
+指令	說明
+ping	測試目標主機是否可達，並顯示延遲時間（ICMP 回應）
+ssh	遠端安全登入其他主機
+scp	使用 SSH 傳送/接收檔案
+telnet	測試 TCP 連線是否能建立（可測某個 port）
+curl	用來發送 HTTP 請求（可測 API 或網頁）
+wget	用來下載網頁或檔案
+netstat	查看網路連線狀態與埠口使用（已被 ss 取代）
+ss	更快的 netstat 替代指令，查看 socket 連線狀態
+traceroute	顯示封包經過哪些節點（追蹤路徑）
+dig	查詢 DNS 記錄（如 A、MX、CNAME 等）
+nslookup	另一個查詢 DNS 的工具
+ip	顯示或設定 IP、網卡、路由（如 ip a、ip r）
+ifconfig	顯示或設定網卡資訊（舊版，已被 ip 取代）
+nmap	掃描主機開放的 port 或服務（常用於資安掃描）
+arp	查看 ARP 快取或對特定 IP 查詢 MAC
+hostname	顯示或設定系統主機名稱
+host	查詢網域名稱對應的 IP（簡版的 dig）
+tcpdump	網路封包分析工具（需 root 權限）
+nc / netcat	建立 TCP 或 UDP 連線，常用於測試 port 開關
 
 ```
 
 ## 安裝與管理 Ubuntu
 ```
+待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補
 sudo apt-get update  # 更新軟體
 sudo apt-get upgrade  # 升級所有安裝軟體
 sudo apt-get install package_name  # 安裝軟體
@@ -212,6 +230,7 @@ sudo apt-get remove package_name  # 刪除軟體
 
 ## 其他
 ```
+待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補待補
 顯示當前目錄
 pwd 
 
