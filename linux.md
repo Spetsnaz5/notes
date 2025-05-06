@@ -32,12 +32,17 @@ rm [選項] 檔案或資料夾名稱
 - -r folder/	遞迴刪除資料夾及其內容（小心使用）
 - -rf folder/	強制刪除整個資料夾及內容，最危險但常用
 
+```
+cp [選項] 原始路徑 目標路徑
+```
+- file backup 複製 file 為 backup
+- file /home/user/	將 file 複製到 /home/user/ 資料夾
+- -i file backup	複製時如目標檔案存在，會提示是否覆蓋
+- -r folder1/ folder2/	遞迴複製資料夾（含內容）到 folder2/
+- -u file backup	僅在原始檔案較新時才覆蓋目標檔案
 
 
-刪除檔案或目錄
-rm file
-rm -r directory    # 遞迴刪除目錄
-rm -f file         # 強制刪除
+
 
 複製檔案或目錄
 cp source_file destination
