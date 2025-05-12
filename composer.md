@@ -4,12 +4,13 @@ composer --version
 
 # 初始化專案
 composer init
+php composer.phar init
 
 # 安裝特定套件
 composer require <vendor/package>
 
-# 只在開發階段需要套件
-composer require phpunit/phpunit --dev
+# 正式環境部署：跳過開發工具，減少依賴，提升效能、安全性
+composer require phpunit/phpunit --no-dev
 
 # 限制套件版本更新範圍（鎖定版本） ^2.0: 接受 2.x 版本的更新，但不會升級到 3.x。
 composer require monolog/monolog:^2.0
@@ -40,6 +41,7 @@ composer create-project <vendor/package>
 
 # 檢查 composer.json 格式是否正確，避免語法錯誤
 composer validate
+
 ```
 
 ```
