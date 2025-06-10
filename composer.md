@@ -20,6 +20,9 @@ composer require guzzlehttp/guzzle:7.0.1
 # 更新所有套件
 composer update
 
+# 更新 require 套件
+composer update --no-dev
+
 # 更新特定套件
 composer update <vendor/package>
 
