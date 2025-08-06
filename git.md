@@ -146,7 +146,7 @@ git push <remote-name> <branch-name>
 強推至指定的遠端分支
 git push --force <remote-name> <branch-name>
 
-強推至指定的遠端分支前，檢查遠端分支是否已被修改
+安全地推送本地分支到遠端，避免覆蓋他人提交
 git push --force-with-lease <remote-name> <branch-name>
 
 發佈所有至指定的遠端
