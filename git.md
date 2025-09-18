@@ -26,18 +26,6 @@ git restore [檔案或資料夾]
 
 暫存區移除
 git restore --staged
-
-暫存更改
-git stash
-
-列出暫存更改
-git stash list
-
-恢復暫存更改並刪除
-git stash pop
-
-清除所有暫存條目
-git stash clear
 ```
 
 ## add
@@ -47,6 +35,33 @@ git add .
 
 將指定的檔案或資料夾加入版本控制
 git add [檔案或資料夾]
+``` 
+
+## stash
+```
+暫存更改
+git stash
+
+暫存並附加訊息
+git stash save "message"
+
+列出暫存更改
+git stash list
+
+取回暫存，不刪除 stash
+git stash apply
+
+取回指定 stash，不刪除 stash
+git stash apply stash@{2}
+
+恢復暫存更改並刪除
+git stash pop
+
+刪除指定 stash
+git stash drop stash@{0}
+
+清除所有暫存條目
+git stash clear
 ``` 
 
 ## reset
