@@ -1,104 +1,70 @@
-### 查詢版本
-```
-composer --version
-```
+## 索引目錄
 
-### 初始化專案
-```
+- [專案初始化與設定](#專案初始化與設定)
+---
+
+## 專案初始化與設定
+
+Composer 的核心是 `composer.json` 檔案，它定義了專案的所有依賴、版本、自動載入規則等元數據。
+
+### `init`
+以互動式問答的方式，在當前目錄下建立一個新的 `composer.json` 檔案。
+```bash
 composer init
 ```
 
-### 以 composer.phar 檔案 初始化專案 
-```
-php composer.phar init
-```
+### `composer.json` 檔案詳解
 
-### 安裝特定套件
-```
-composer require <vendor/package>
-```
+這是一個 `composer.json` 的完整範例，涵蓋了最常用的欄位。
 
-### 正式環境部署：跳過開發工具，減少依賴，提升效能、安全性
-```
-composer require phpunit/phpunit --no-dev
-```
-
-### 限制套件版本更新範圍（鎖定版本） ^2.0: 接受 2.x 版本的更新，但不會升級到 3.x。
-```
-composer require monolog/monolog:^2.0
-```
-
-### 安裝指定版本套件
-```
-composer require guzzlehttp/guzzle:7.0.1
-```
-
-### 更新所有套件
-```
-composer update
-```
-
-### 更新 require 套件，排除 require-dev 套件
-```
-composer update --no-dev
-```
-
-### 更新特定套件
-```
-composer update <vendor/package>
-```
-
-### 移除套件
-```
-composer remove <vendor/package>
-```
-
-### 重新產生 autoload 檔案
-```
-composer dump-autoload
-```
-
-### 顯示已安裝的所有套件
-```
-composer show
-```
-
-### 檢查有哪些套件有新版本
-```
-composer outdated
-```
-
-### 建立新專案並安裝套件，常用於框架專案（例如 Laravel）
-```
-composer create-project <vendor/package>
-```
-
-### 檢查 composer.json 格式是否正確，避免語法錯誤
-```
-composer validate
-```
-
-### 範例
-```
-composer.json 文件範例
-
+```json
 {
-    "name": "myproject/app",
-    "description": "A simple PHP project using Composer",
+    "name": "myvendor/myproject",
+    "description": "A sample PHP project",
+    "type": "project",
+    "license": "MIT",
+    "version": "1.0.0",
     "require": {
-        "guzzlehttp/guzzle": "^7.0"
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.0",
+        "monolog/monolog": "^2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^9.0"
+        "phpunit/phpunit": "^10.0",
+        "fakerphp/faker": "^1.9"
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/"
+            "App\": "src/"
+        },
+        "files": [
+            "helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "post-install-cmd": [
+            "@php artisan key:generate"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
     }
 }
-
-require: 正式環境需要的套件。
-require-dev: 開發環境需要的套件。
-autoload: 定義自動加載的命名空間。
 ```
+
+- `name`: 專案名稱 (格式為 `vendor/package`)。
+- `description`: 專案的簡短描述。
+- `require`: **正式環境**需要的套件與版本約束。
+- `require-dev`: **開發環境**才需要的套件（例如測試工具）。
+- `autoload`: 設定 [PSR-4](https://www.php-fig.org/psr/psr-4/) 命名空間與目錄的對應，這是實現自動載入的關鍵。
+- `scripts`: 定義可以透過 `composer run-script` 執行的自定義指令，或在特定事件（如 `post-install-cmd`）後自動觸發的指令。
+- `config`: 用於調整 Composer 的行為，例如 `optimize-autoloader` 用於提升效能。
+
+---
