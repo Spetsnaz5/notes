@@ -40,7 +40,7 @@ composer init
     },
     "autoload": {
         "psr-4": {
-            "App\": "src/"
+            "App\\": "src/"
         },
         "files": [
             "helpers.php"
@@ -48,7 +48,7 @@ composer init
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\": "tests/"
+            "Tests\\": "tests/"
         }
     },
     "scripts": {
