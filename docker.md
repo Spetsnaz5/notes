@@ -21,3 +21,31 @@
 - `docker push <username>/<image-name>`: 將本地映像檔推送到 Registry， **myusername/myapp:1.0**。
 - `docker tag <source-image:tag> <target-image:tag>`: 為映像檔新增一個標籤。
 - `docker rmi <image-id or image-name>`: 移除一個或多個本地映像檔。
+
+### 容器 (Containers)
+- `docker start <container-id>`: 啟動容器。
+- `docker stop <container-id>`: 停止容器。
+- `docker restart <container-id>`: 重啟容器。
+- `docker run [OPTIONS] <image-name> [COMMAND]`: 根據指定的映像檔建立並啟動一個新容器。
+  - `-d`: 在背景執行容器。
+  - `-i`: 開啟標準輸入 (STDIN)，用於互動模式。
+  - `-t`: 分配一個虛擬終端 (pseudo-TTY)。通常與 `-i` 合併為 `-it`。
+  - `-p <host-port>:<container-port>`: 將主機的埠號對應到容器的埠號。
+  - `-v <host-path>:<container-path>`: 將主機的目錄或 Volume 掛載到容器中。
+  - `-e <KEY=VALUE>`: 設定環境變數。
+  - `--name <name>`: 為容器指定一個名稱。
+  - `--network <network>`: 將容器連接到指定的網路。
+  - `--restart <policy>`: 設定重啟策略 (如 `always`, `unless-stopped`)。
+  - `--rm`: 容器停止後自動刪除。
+- `docker ps`: 列出正在執行的容器。
+  - `-a`: 顯示所有容器（包含已停止的）。
+- `docker rm <container-id>`: 刪除一個或多個已停止的容器。
+  - `-f`: 強制刪除容器。
+- `docker logs <container-id>`: 查看容器的日誌。
+  - `-f`: 持續追蹤容器日誌（類似 tail -f）。
+- `docker exec [OPTIONS] <container-id> [COMMAND]`: 在一個正在執行的容器內執行指令。
+  - `-i`: 開啟標準輸入 (互動模式)。
+  - `-t`: 分配一個終端。
+  - `-d`: 在背景執行指令。
+- `docker attach <container-id>`: 連接到正在執行的容器主程序中(使用 `Ctrl+p` `Ctrl+q` 可退出而不停止容器)。
+- `docker stats`: 動態顯示容器的資源使用狀況。
