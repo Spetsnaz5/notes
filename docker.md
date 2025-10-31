@@ -49,3 +49,13 @@
   - `-d`: 在背景執行指令。
 - `docker attach <container-id>`: 連接到正在執行的容器主程序中(使用 `Ctrl+p` `Ctrl+q` 可退出而不停止容器)。
 - `docker stats`: 動態顯示容器的資源使用狀況。
+
+### 資料卷 (Volumes)
+
+- `docker volume create <volume-name>`: 建立 Volume。
+  - `--driver <driver>`: 指定驅動。
+    - `local`: 預設，資料存放在本機
+    - `nfs`: 掛載到網路檔案系統
+- `docker volume ls`: 列出所有 Volume。
+- `docker volume rm <volume-name>`: 刪除 Volume（必須沒有被容器使用中）。
+- `docker volume prune`: 清理未使用的 Volume。
