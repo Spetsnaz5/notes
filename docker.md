@@ -59,3 +59,17 @@
 - `docker volume ls`: 列出所有 Volume。
 - `docker volume rm <volume-name>`: 刪除 Volume（必須沒有被容器使用中）。
 - `docker volume prune`: 清理未使用的 Volume。
+
+### 網路 (Networks)
+
+- `docker network create <network-name>`: 建立網路。
+  - `-d, --driver`: 指定網路驅動 (如 `bridge`, `host`, `overlay`)。
+    - `bridge`: 預設，本地容器互聯。
+    - `host`: 使用主機網路
+    - `overlay`: 跨多台 Docker 主機的分散式網路，用於 Swarm。
+    - `none`: 容器不連接任何網路。
+- `docker network ls`: 列出所有網路。
+- `docker network rm <network-name>`: 刪除網路（需確保沒有容器在使用）。
+- `docker network prune`: 清理未使用的網路。
+- `docker network connect <network-name> <container>`: 容器連接指定網路。
+- `docker network disconnect <network-name> <container>`: 容器中斷指定網路。
