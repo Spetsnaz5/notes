@@ -73,3 +73,13 @@
 - `docker network prune`: 清理未使用的網路。
 - `docker network connect <network-name> <container>`: 容器連接指定網路。
 - `docker network disconnect <network-name> <container>`: 容器中斷指定網路。
+
+### 系統 (System)
+
+- `docker version`: 顯示版本資訊。
+- `docker info`: 顯示系統範圍資訊。
+- `docker system prune`: 清理系統中未使用的資源 (懸空映像檔、已停止容器等)。
+  - `-a`: 同時移除未被使用的映像檔。
+  - `--volumes`: 同時移除未被使用的資料卷。
+
+---
