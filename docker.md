@@ -83,3 +83,31 @@
   - `--volumes`: 同時移除未被使用的資料卷。
 
 ---
+
+## Docker Compose
+
+定義多個容器服務的設定
+
+- `docker compose ps`: 列出所有由 Compose 啟動的容器。 
+- `docker compose up`: 建立並啟動所有服務。
+  - `-d`: 在背景執行。
+  - `--build`: 在啟動前重新建構映像檔。
+  - `--force-recreate`: 強制重建容器。
+  - `--no-deps`: 不啟動服務所依賴的其他服務。
+  - `--scale <service=NUM>`: 指定服務的實例數量。
+  - `--remove-orphans`: 移除在 `yml` 檔案中已不存在的服務容器。
+- `docker compose build`: 建構或重建服務的映像檔。
+  - `-t <image-name>:<tag> <path>`:  <br> 指定映像檔名稱，方便後續管理與執行 `<tag>` 可選，指定版本標籤（預設是 latest）`<path>` Dockerfile 所在目錄（. 代表當前目錄）。
+  - `--no-cache`: 不使用快取。
+  - `--pull`: 總是嘗試拉取最新的基礎映像檔。
+  - `--parallel`: 同時建構多個服務。
+- `docker compose down`: 停止並移除所有服務、網路。
+  - `-v, --volumes`: 同時移除 volume。
+  - `--rmi all`: 移除建構的映像檔。
+- `docker compose logs`: 查看服務日誌。
+  - `-f, --follow`: 持續追蹤日誌。
+- `docker compose start <image-name>`: 啟動容器。
+- `docker compose stop <image-name>`: 停止容器。
+- `docker compose restart <image-name>`: 重啟容器。
+
+---
