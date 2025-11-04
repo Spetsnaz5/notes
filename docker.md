@@ -111,3 +111,42 @@
 - `docker compose restart <image-name>`: 重啟容器。
 
 ---
+
+## 基本結構
+``` yml
+version: <version>                  # Compose 文件版本
+services:                           # 定義服務
+  web:                              # 服務名稱
+    image: <image-name>             # 使用映像檔
+    container_name: <name>          # 容器名稱（可選）
+    ports:                          # 埠口對應
+      - <local-port:container-port> # 主機 8080 對應容器 80
+    environment:                    # 環境變數
+      - <key=value>
+    volumes:                        # 掛載 Volume 或目錄
+      - <volume-name:container-path>
+    networks:                       # 服務使用網路
+      - <network-name>
+    depends_on:                     # 依賴其他服務
+      - <container-name>
+    working_dir: <paht>             #切至工作的目錄
+
+  db:
+    image: <image-name> 
+    container_name: <name>
+    environment:
+      MYSQL_ROOT_PASSWORD: <password>
+      MYSQL_DATABASE: <db-name>
+    volumes:
+      - <volume-name:container-path>
+    networks:
+      - <network-name>
+
+volumes:                            # 定義 Volume
+  <volume-name>:
+  <volume-name2>:
+
+networks:                           # 定義網路
+  <network-name>:
+    driver: <driver>                  # 可選：bridge, overlay, host
+```
