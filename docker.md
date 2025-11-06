@@ -150,3 +150,50 @@ networks:                           # 定義網路
   <network-name>:
     driver: <driver>                  # 可選：bridge, overlay, host
 ```
+
+## 多容器服務整合 
+``` yml
+version: "3.8"
+services:
+  mysql:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    ports:
+      - 3306:3306
+    networks:
+      - my-network
+    volumes:
+      - ./mysql/data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin
+    ports:
+      - 8080:80
+    environment:
+      PMA_HOST: mysql
+    depends_on:
+      - mysql
+    networks:
+      - my-network
+
+  ubuntu:
+    image: my-ubuntu
+    #build: .
+    ports:
+      - 80:80
+    networks:
+      - my-network
+    depends_on:
+      - mysql
+    volumes:
+      - ./php-app:/var/www/html
+
+volumes:
+  php-app:
+
+networks:
+  my-network:
+    driver: bridge
+```
