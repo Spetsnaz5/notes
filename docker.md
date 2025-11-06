@@ -197,3 +197,43 @@ networks:
   my-network:
     driver: bridge
 ```
+
+
+## Dockerfile
+
+建構自訂映像檔
+
+| 指令 | 說明 |
+| :--- | :--- |
+| `FROM` | 指定基礎映像檔。 |
+| | `FROM ubuntu:latest` |
+| `RUN` | 在建構階段執行命令。 |
+| | `RUN apt-get update && apt-get install -y nginx` |
+| `CMD` | 提供容器啟動時的**預設**執行命令。 |
+| | `CMD ["nginx", "-g", "daemon off;"]` |
+| `ENTRYPOINT` | 設定容器的**主要**執行命令。 |
+| | `ENTRYPOINT ["/usr/sbin/nginx"]` |
+| `COPY` | 將主機檔案複製到映像檔。 |
+| | `COPY ./app /app` |
+| `ADD` | 類似 `COPY`，但支援解壓縮和 URL。 |
+| | `ADD https://example.com/latest.tar.gz /app/` |
+| `WORKDIR` | 設定工作目錄。 |
+| | `WORKDIR /app` |
+| `ENV` | 設定環境變數。 |
+| | `ENV MY_VAR=my_value` |
+| `ARG` | 設定建構階段的變數。 |
+| | `ARG BUILD_VERSION=1.0` |
+| `EXPOSE` | 聲明容器監聽的埠號。 |
+| | `EXPOSE 80 443` |
+| `VOLUME` | 建立掛載點。 |
+| | `VOLUME /data` |
+| `USER` | 指定執行指令的使用者。 |
+| | `USER www-data` |
+| `HEALTHCHECK` | 指定如何檢查容器是否健康。 |
+| | `HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1` |
+| `ONBUILD` | 當其他映像檔 `FROM` 此映像檔時觸發的命令。 |
+| | `ONBUILD COPY . /app/src` |
+| `SHELL` | 指定 `RUN` 指令使用的 shell。 |
+| | `SHELL ["/bin/bash", "-c"]` |
+
+---
