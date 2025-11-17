@@ -5,6 +5,11 @@
 - [2. Everyday Commands (日常指令)](#2-everyday-commands-日常指令)
 - [3. Working with Remotes (遠端協作)](#3-working-with-remotes-遠端協作)
 - [4. Branching and Merging (分支與合併)](#4-branching-and-merging-分支與合併)
+- [5. Reviewing History & Changes (檢視歷史與變更)](#5-reviewing-history--changes-檢視歷史與變更)
+- [6. Undoing Changes (還原變更)](#6-undoing-changes-還原變更)
+- [7. Stashing (暫存)](#7-stashing-暫存)
+- [8. Tagging (標籤)](#8-tagging-標籤)
+- [9. Ignoring Files (忽略檔案)](#9-ignoring-files-忽略檔案)
 
 ## 1. Setup and Basics (設定與基礎)
 
@@ -177,4 +182,144 @@ git rebase --continue
 
 # 或選擇中止 rebase，回到 rebase 前的狀態
 git rebase --abort
+```
+
+## 5. Reviewing History & Changes (檢視歷史與變更)
+
+### `git log`
+查看 commit 記錄。
+```bash
+# 查看詳細記錄
+git log
+
+# 查看精簡記錄
+git log --oneline
+```
+
+### `git reflog`
+查看 HEAD 的移動記錄，包含所有分支和 `reset` 的操作。
+```bash
+git reflog
+```
+
+### `git diff`
+比較不同狀態之間的差異。
+```bash
+# 比較工作區和暫存區的差異
+git diff
+
+# 比較暫存區和最新 commit 的差異
+git diff --staged
+
+# 比較工作區和最新 commit 的差異
+git diff HEAD
+
+# 比較兩個分支之間的差異
+git diff <branch1>..<branch2>
+```
+
+## 6. Undoing Changes (還原變更)
+
+### `git restore`
+還原工作區的檔案。
+```bash
+# 還原工作區的檔案 (捨棄變更)
+git restore [檔案或資料夾]
+
+# 將檔案從暫存區移出，但保留工作區的變更
+git restore --staged [檔案或資料夾]
+```
+
+### `git reset`
+重置當前 HEAD 到指定的狀態。
+```bash
+# 將所有檔案移出暫存區
+git reset
+
+# 將指定檔案移出暫存區
+git reset [檔案或資料夾]
+
+# --soft: 只移動 HEAD，保留暫存區和工作區
+git reset --soft <commit-hash>
+
+# --mixed (預設): 移動 HEAD 和暫存區，保留工作區
+git reset --mixed <commit-hash>
+
+# --hard: 移動 HEAD、暫存區和工作區 (會捨棄未 commit 的變更)
+git reset --hard <commit-hash>
+```
+
+### `git revert <commit-hash>`
+建立一個新的 commit 來撤銷指定 commit 的變更。這是一種安全、不會改寫歷史的還原方式，適用於已推送到遠端分支的 commit。
+```bash
+# 還原指定的 commit
+git revert <commit-hash>
+
+# 還原後不自動 commit，讓你可以先編輯
+git revert --no-commit <commit-hash>
+```
+
+## 7. Stashing (暫存)
+暫時儲存工作區和暫存區的變更。
+
+```bash
+# 暫存目前的變更
+git stash
+
+# 暫存並加上訊息
+git stash save "你的訊息"
+
+# 列出所有 stash
+git stash list
+
+# 取回最新的 stash 並從 stash list 中移除
+git stash pop
+
+# 取回指定的 stash 並從 stash list 中移除
+git stash pop stash@{2}
+
+# 取回最新的 stash 但不從 stash list 中移除
+git stash apply
+
+# 刪除指定的 stash
+git stash drop stash@{0}
+
+# 清除所有 stash
+git stash clear
+```
+
+## 8. Tagging (標籤)
+為特定的 commit 加上標籤，常用於版本發布。
+
+```bash
+# 顯示所有標籤
+git tag
+
+# 為當前 commit 建立標籤
+git tag <tag-name>
+
+# 為指定的 commit 建立標籤
+git tag <tag-name> <commit-hash>
+
+# 推送所有標籤到遠端
+git push --tags
+
+# 推送指定標籤到遠端
+git push <remote-name> <tag-name>
+```
+
+## 9. Ignoring Files (忽略檔案)
+
+### `.gitignore`
+在專案根目錄建立一個名為 `.gitignore` 的檔案，用來告訴 Git 哪些檔案或目錄應該被忽略，不納入版本控制。
+
+```gitignore
+# 忽略所有 .log 檔案
+*.log
+
+# 忽略 node_modules 目錄
+node_modules/
+
+# 忽略一個特定的設定檔
+config.local.js
 ```
