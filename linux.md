@@ -4,6 +4,7 @@
 - [2. 檔案與目錄操作 (File & Directory Operations)](#2-檔案與目錄操作-file--directory-operations)
 - [3. 管道與重導向 (Piping & Redirection)](#3-管道與重導向-piping--redirection)
 - [4. 檔案內容檢視與處理 (File Content & Processing)](#4-檔案內容檢視與處理-file-content--processing)
+- [5. 搜尋檔案與指令 (Searching Files & Commands)](#5-搜尋檔案與指令-searching-files--commands)
 
 ---
 
@@ -152,3 +153,23 @@ grep [options] 'pattern' [file_name]
 - `-l`：只列出包含符合模式的檔名，不顯示內容。
 - `-E`：使用擴充正規表示式 (E-grep)。
 - `-C k`：顯示符合行的前後 k 行內容 (Context)。
+
+## 5. 搜尋檔案與指令 (Searching Files & Commands)
+
+### `find`
+在檔案系統中搜尋檔案或目錄。
+```bash
+find [path] [expressions]
+```
+- `-name 'pattern'`：根據檔名搜尋（例如 `'*.log'`）。
+- `-type d`：只搜尋目錄。
+- `-type f`：只搜尋檔案。
+- `-mtime -7`：搜尋 7 天內被修改過的檔案。
+- `-size +10M`：搜尋大於 10MB 的檔案。
+- `-exec command {} \;`：對每個搜尋結果執行指定的指令。
+
+### `whereis`
+查找指令的可執行檔、原始碼、說明文件的位置。
+```bash
+whereis [command_name]
+```
