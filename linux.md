@@ -3,6 +3,7 @@
 - [1. 套件管理 (Package Management)](#1-套件管理-package-management)
 - [2. 檔案與目錄操作 (File & Directory Operations)](#2-檔案與目錄操作-file--directory-operations)
 - [3. 管道與重導向 (Piping & Redirection)](#3-管道與重導向-piping--redirection)
+- [4. 檔案內容檢視與處理 (File Content & Processing)](#4-檔案內容檢視與處理-file-content--processing)
 
 ---
 
@@ -117,3 +118,37 @@ ls -l > files.txt
 # 將錯誤日誌附加到 system.log 檔案的末尾
 cat error.log >> system.log
 ```
+
+## 4. 檔案內容檢視與處理 (File Content & Processing)
+
+### `less`
+分頁顯示檔案內容，提供互動式瀏覽。
+```bash
+less [file_name]
+```
+- `q`：離開。
+- `/keyword`：向下搜尋關鍵字。
+- `n` / `N`：跳至下一個/上一個搜尋結果。
+- `g` / `G`：跳至檔案開頭/結尾。
+
+### `tail`
+顯示檔案的最後幾行。
+```bash
+tail [options] [file_name]
+```
+- `-n k`：顯示最後 k 行（預設為 10）。
+- `-f`：持續監控檔案的新增內容，常用於查看日誌 (log)。
+
+### `grep`
+在檔案中搜尋符合指定模式的文字行。
+```bash
+grep [options] 'pattern' [file_name]
+```
+- `-i`：忽略大小寫。
+- `-v`：反向搜尋，顯示不符合模式的行。
+- `-r` 或 `-R`：遞迴搜尋目錄下的所有檔案。
+- `-n`：顯示符合行的行號。
+- `-w`：只尋找完全符合的單字。
+- `-l`：只列出包含符合模式的檔名，不顯示內容。
+- `-E`：使用擴充正規表示式 (E-grep)。
+- `-C k`：顯示符合行的前後 k 行內容 (Context)。
