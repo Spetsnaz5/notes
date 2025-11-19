@@ -2,6 +2,8 @@
 
 - [1. 套件管理 (Package Management)](#1-套件管理-package-management)
 - [2. 檔案與目錄操作 (File & Directory Operations)](#2-檔案與目錄操作-file--directory-operations)
+- [3. 管道與重導向 (Piping & Redirection)](#3-管道與重導向-piping--redirection)
+
 ---
 
 ## 1. 套件管理 (Package Management)
@@ -74,4 +76,44 @@ cp [options] [source] [destination]
 移動或重新命名檔案、目錄。
 ```bash
 mv [source] [destination]
+```
+
+## 3. 管道與重導向 (Piping & Redirection)
+管道與重導向是 Linux Shell 的核心功能，能將多個指令組合起來，完成複雜的任務。
+
+### 管道 `|`
+將一個指令的「標準輸出 (stdout)」連接到另一個指令的「標準輸入 (stdin)」。簡單來說，就是把左邊指令的結果，交給右邊的指令處理。
+
+**語法**: `command1 | command2`
+
+**範例**:
+```bash
+# 查看目前系統所有行程，並從中篩選出包含 "nginx" 的行
+ps aux | grep nginx
+
+# 列出目前目錄的詳細資訊，並交由 less 分頁顯示
+ls -l | less
+```
+
+### 輸出重導向 `>` 與 `>>`
+將指令的輸出結果寫入檔案，而不是顯示在螢幕上。
+
+**`>` (覆蓋)**: 將結果寫入檔案。如果檔案已存在，會**覆蓋**掉所有舊內容。如果檔案不存在，則會建立新檔案。
+
+**語法**: `command > file.txt`
+
+**範例**:
+```bash
+# 將目前目錄的列表寫入 files.txt，覆蓋舊有內容
+ls -l > files.txt
+```
+
+**`>>` (附加)**: 將結果**附加**到檔案的末尾。如果檔案不存在，同樣會建立新檔案。
+
+**語法**: `command >> file.txt`
+
+**範例**:
+```bash
+# 將錯誤日誌附加到 system.log 檔案的末尾
+cat error.log >> system.log
 ```
