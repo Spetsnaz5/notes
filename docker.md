@@ -49,6 +49,8 @@
   - `-d`: 在背景執行指令。
 - `docker attach <container-id>`: 連接到正在執行的容器主程序中(使用 `Ctrl+p` `Ctrl+q` 可退出而不停止容器)。
 - `docker stats`: 動態顯示容器的資源使用狀況。
+- `docker inspect <name or id>`: 查看一個或多個容器、映像檔、Volume、網路的詳細資訊。
+- `docker top <container-id>`: 顯示容器內正在執行的程序。
 
 ### 資料卷 (Volumes)
 
