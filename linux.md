@@ -7,6 +7,8 @@
 - [5. 搜尋檔案與指令 (Searching Files & Commands)](#5-搜尋檔案與指令-searching-files--commands)
 - [6. 權限與擁有者 (Permissions & Ownership)](#6-權限與擁有者-permissions--ownership)
 - [7. 系統資訊 (System Information)](#7-系統資訊-system-information)
+- [8. 行程管理 (Process Management)](#8-行程管理-process-management)
+
 ---
 
 ## 1. 套件管理 (Package Management)
@@ -244,3 +246,39 @@ who
 ```bash
 hostname
 ```
+
+## 8. 行程管理 (Process Management)
+
+### `top`
+動態即時顯示系統的行程狀態。
+```bash
+top
+```
+- `P`：依 CPU 使用率排序。
+- `M`：依記憶體使用量排序。
+- `k`：輸入 PID 來終止行程。
+- `q`：離開。
+
+### `ps`
+顯示當前系統的行程快照（靜態）。
+```bash
+ps [options]
+```
+- `aux`：顯示所有使用者的所有行程（詳細格式）。
+- `ef`：顯示所有行程（標準格式）。
+
+### `kill`
+傳送訊號給指定的行程，通常用來終止行程。
+```bash
+kill [signal] [PID]
+```
+- `-9`：強制終止行程 (SIGKILL)。
+- `-15`：正常終止行程 (SIGTERM，預設)。
+
+### `crontab`
+管理定時執行的任務排程。
+```bash
+crontab [options]
+```
+- `-e`：編輯當前使用者的 crontab。
+- `-l`：列出當前使用者的 crontab。
