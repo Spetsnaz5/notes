@@ -5,6 +5,7 @@
 - [3. 管道與重導向 (Piping & Redirection)](#3-管道與重導向-piping--redirection)
 - [4. 檔案內容檢視與處理 (File Content & Processing)](#4-檔案內容檢視與處理-file-content--processing)
 - [5. 搜尋檔案與指令 (Searching Files & Commands)](#5-搜尋檔案與指令-searching-files--commands)
+- [6. 權限與擁有者 (Permissions & Ownership)](#6-權限與擁有者-permissions--ownership)
 
 ---
 
@@ -173,3 +174,23 @@ find [path] [expressions]
 ```bash
 whereis [command_name]
 ```
+
+## 6. 權限與擁有者 (Permissions & Ownership)
+
+### `chmod`
+變更檔案或目錄的權限。
+```bash
+chmod [mode] [file_or_directory]
+```
+- `u` (user), `g` (group), `o` (others), `a` (all)
+- `+` (新增權限), `-` (移除權限), `=` (設定權限)
+- `r` (讀=4), `w` (寫=2), `x` (執行=1)
+- **範例**: `chmod 755 script.sh` (擁有者可讀寫執行，群組和其他人可讀可執行)。
+- `-R`：遞迴變更目錄及其內容的權限。
+
+### `chown`
+變更檔案或目錄的擁有者與群組。
+```bash
+chown [user]:[group] [file_or_directory]
+```
+- `-R`：遞迴變更目錄及其內容的擁有者。
