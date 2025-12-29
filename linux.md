@@ -6,7 +6,7 @@
 - [4. 檔案內容檢視與處理 (File Content & Processing)](#4-檔案內容檢視與處理-file-content--processing)
 - [5. 搜尋檔案與指令 (Searching Files & Commands)](#5-搜尋檔案與指令-searching-files--commands)
 - [6. 權限與擁有者 (Permissions & Ownership)](#6-權限與擁有者-permissions--ownership)
-
+- [7. 系統資訊 (System Information)](#7-系統資訊-system-information)
 ---
 
 ## 1. 套件管理 (Package Management)
@@ -194,3 +194,53 @@ chmod [mode] [file_or_directory]
 chown [user]:[group] [file_or_directory]
 ```
 - `-R`：遞迴變更目錄及其內容的擁有者。
+
+## 7. 系統資訊 (System Information)
+
+### `df`
+顯示磁碟空間使用情況。
+```bash
+df [options]
+```
+- `-h`：以人類可讀的格式顯示（GB, MB）。
+
+### `du`
+顯示目錄或檔案所佔用的磁碟空間大小。
+```bash
+du [options] [path]
+```
+- `-h`：以人類可讀的格式顯示。
+- `-s`：只顯示總計大小。
+- `--max-depth=1`：只顯示第一層目錄的大小。
+
+### `free`
+顯示系統記憶體（RAM）的使用情況。
+```bash
+free [options]
+```
+- `-h`：以人類可讀的格式顯示。
+
+### `uname`
+顯示系統核心與作業系統資訊。
+```bash
+uname [options]
+```
+- `-a`：顯示所有詳細資訊。
+
+### `whoami`
+顯示當前登入的使用者名稱。
+```bash
+whoami
+```
+
+### `who`
+顯示目前登入系統的使用者列表。
+```bash
+who
+```
+
+### `hostname`
+顯示或設定系統的主機名稱。
+```bash
+hostname
+```
