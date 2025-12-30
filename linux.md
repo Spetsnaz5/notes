@@ -8,6 +8,7 @@
 - [6. 權限與擁有者 (Permissions & Ownership)](#6-權限與擁有者-permissions--ownership)
 - [7. 系統資訊 (System Information)](#7-系統資訊-system-information)
 - [8. 行程管理 (Process Management)](#8-行程管理-process-management)
+- [9. 網路 (Networking)](#9-網路-networking)
 
 ---
 
@@ -282,3 +283,50 @@ crontab [options]
 ```
 - `-e`：編輯當前使用者的 crontab。
 - `-l`：列出當前使用者的 crontab。
+
+## 9. 網路 (Networking)
+
+### `ping`
+測試與目標主機的網路連線狀態。
+```bash
+ping [host_or_ip]
+```
+
+### `telnet`
+測試遠端主機的特定埠號是否開啟。
+```bash
+telnet [host] [port]
+```
+
+### `ssh`
+以加密方式遠端登入另一台主機。
+```bash
+ssh [user]@[host]
+```
+- `-p [port]`：指定連線的埠號。
+- `-i [key_file]`：指定用於驗證的私鑰檔案。
+
+### `scp`
+在本地與遠端主機之間安全地複製檔案。
+```bash
+scp [options] [source] [destination]
+```
+- `-r`：遞迴複製整個目錄。
+- `-P [port]`：指定遠端主機的 SSH 埠號（注意是大寫 P）。
+
+### `curl`
+強大的 URL 傳輸工具，可用於發送 HTTP 請求。
+```bash
+curl [options] [URL]
+```
+- `-X POST`：指定請求方法為 POST。
+- `-d 'data'`：傳送 POST 請求的資料。
+- `-H 'Header: Value'`：自訂請求標頭。
+- `-i`：在輸出中包含 HTTP 回應標頭。
+- `-L`：自動跟隨 HTTP 轉址 (Redirection)。
+
+### `host`
+查詢 DNS 資訊。
+```bash
+host [domain_name]
+```
