@@ -9,6 +9,7 @@
 - [7. 系統資訊 (System Information)](#7-系統資訊-system-information)
 - [8. 行程管理 (Process Management)](#8-行程管理-process-management)
 - [9. 網路 (Networking)](#9-網路-networking)
+- [10. 其他指令 (Miscellaneous)](#10-其他指令-miscellaneous)
 
 ---
 
@@ -329,4 +330,30 @@ curl [options] [URL]
 查詢 DNS 資訊。
 ```bash
 host [domain_name]
+```
+
+## 10. 其他指令 (Miscellaneous)
+
+### `clear`
+清除終端機螢幕上的所有內容。
+```bash
+clear
+```
+
+### `man`
+顯示指令的說明手冊 (manual)。
+```bash
+man [command_name]
+```
+
+### `service`
+顯示系統運行的服務狀態。
+```bash
+service --status-all
+```
+
+### `a2enmod`
+(Debian/Ubuntu) 用於啟用 Apache 模組。
+```bash
+a2enmod rewrite
 ```
