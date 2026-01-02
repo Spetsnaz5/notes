@@ -4,6 +4,8 @@
 - [MySQL 鎖機制 (Locking)](#mysql-鎖機制-locking)
 - [MySQL 基礎指令](#mysql-基礎指令)
 - [索引 (Indexing)](#索引-indexing)
+- [資料表約束 (Constraints)](#資料表約束-constraints)
+
 ---
 
 # MySQL 交易隔離級別 (Transaction Isolation Level)
@@ -165,6 +167,30 @@ SHOW INDEX FROM table_name;
 
 -- 刪除索引
 DROP INDEX idx_name ON table_name;
+```
+
+---
+
+# 資料表約束 (Constraints)
+約束用於確保資料庫中資料的準確性和可靠性。
+
+- **NOT NULL**: 確保欄位不能有 NULL 值。
+- **UNIQUE**: 確保欄位中的所有值都不同。
+- **PRIMARY KEY**: `NOT NULL` 和 `UNIQUE` 的組合。唯一標識資料表中的每一行。
+- **FOREIGN KEY**: 用於連結兩個資料表，防止破壞資料表之間連結的行為。
+- **DEFAULT**: 為欄位提供預設值。
+- **CHECK**: (MySQL 8.0.16+ 支持) 確保欄位中的值符合特定條件。
+
+```sql
+-- 包含多種約束的建表範例
+CREATE TABLE orders (
+    order_id INT AUTO_INCREMENT PRIMARY KEY,
+    product_name VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL CHECK (quantity > 0),
+    user_id INT,
+    order_date DATE DEFAULT (CURRENT_DATE),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
 ```
 
 ---
