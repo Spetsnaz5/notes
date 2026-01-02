@@ -3,7 +3,7 @@
 - [MySQL 交易隔離級別 (Transaction Isolation Level)](#mysql-交易隔離級別-transaction-isolation-level)
 - [MySQL 鎖機制 (Locking)](#mysql-鎖機制-locking)
 - [MySQL 基礎指令](#mysql-基礎指令)
-
+- [索引 (Indexing)](#索引-indexing)
 ---
 
 # MySQL 交易隔離級別 (Transaction Isolation Level)
@@ -143,6 +143,28 @@ SELECT age, COUNT(*) FROM table_name GROUP BY age;
 SELECT u.name, o.order_details
 FROM users u
 JOIN orders o ON u.id = o.user_id;
+```
+
+---
+
+# 索引 (Indexing)
+
+**索引是資料庫查詢效能的靈魂**。它是一種特殊的資料結構 (在 MySQL 中主要是 B-Tree)，能讓資料庫引擎快速地找到特定資料，而不需要逐行掃描整個資料表 (Full Table Scan)。良好的索引策略可以將查詢速度從 `O(n)` 提升到 `O(log n)`。
+
+不恰當的索引策略是造成查詢緩慢最常見的原因。進階主題包含：複合索引、覆蓋索引、以及索引失效的場景。
+
+```sql
+-- 在 'name' 欄位上建立索引
+CREATE INDEX idx_name ON table_name (name);
+
+-- 建立唯一索引，確保欄位值不重複
+CREATE UNIQUE INDEX idx_email ON table_name (email);
+
+-- 查看資料表的索引
+SHOW INDEX FROM table_name;
+
+-- 刪除索引
+DROP INDEX idx_name ON table_name;
 ```
 
 ---
