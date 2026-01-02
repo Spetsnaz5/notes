@@ -2,6 +2,7 @@
 
 - [MySQL 交易隔離級別 (Transaction Isolation Level)](#mysql-交易隔離級別-transaction-isolation-level)
 - [MySQL 鎖機制 (Locking)](#mysql-鎖機制-locking)
+- [MySQL 基礎指令](#mysql-基礎指令)
 
 ---
 
@@ -64,5 +65,84 @@
 | **Next-Key Lock** | 結合行鎖和間隙鎖     | 鎖住匹配行及其前方間隙                   |
 | **悲觀鎖**     | 實時加鎖以避免衝突   | 通常基於資料庫原生鎖 (`SELECT ... FOR UPDATE`) |
 | **樂觀鎖**     | 檢查版本號避免衝突   | 不依賴資料庫鎖，應用層實現，效率高       |
+
+---
+
+# MySQL 基礎指令
+
+## 連線與資料庫操作
+```sql
+-- 登入 MySQL
+mysql -u your_username -p
+
+-- 顯示所有資料庫
+SHOW DATABASES;
+
+-- 建立新資料庫
+CREATE DATABASE database_name;
+
+-- 使用指定的資料庫
+USE database_name;
+
+-- 刪除資料庫 (請謹慎使用)
+DROP DATABASE database_name;
+```
+
+## 資料表操作 (DDL - Data Definition Language)
+```sql
+-- 建立新資料表
+CREATE TABLE table_name (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 查看資料表結構
+DESCRIBE table_name;
+-- 或
+SHOW COLUMNS FROM table_name;
+
+-- 修改資料表 (例如：新增一個欄位)
+ALTER TABLE table_name ADD COLUMN age INT;
+
+-- 刪除資料表
+DROP TABLE table_name;
+```
+
+## 資料操作 (DML - Data Manipulation Language)
+```sql
+-- 新增資料
+INSERT INTO table_name (name, email, age) VALUES ('John Doe', 'john.doe@example.com', 30);
+
+-- 更新資料
+UPDATE table_name SET age = 31 WHERE name = 'John Doe';
+
+-- 刪除資料
+DELETE FROM table_name WHERE name = 'John Doe';
+```
+
+## 資料查詢 (DQL - Data Query Language)
+```sql
+-- 查詢所有資料
+SELECT * FROM table_name;
+
+-- 條件查詢
+SELECT * FROM table_name WHERE age > 30;
+
+-- 排序查詢
+SELECT * FROM table_name ORDER BY created_at DESC;
+
+-- 限制回傳筆數
+SELECT * FROM table_name LIMIT 10;
+
+-- 彙總查詢 (搭配 GROUP BY)
+SELECT age, COUNT(*) FROM table_name GROUP BY age;
+
+-- 連接查詢 (JOIN)
+SELECT u.name, o.order_details
+FROM users u
+JOIN orders o ON u.id = o.user_id;
+```
 
 ---
