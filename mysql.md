@@ -6,6 +6,9 @@
 - [索引 (Indexing)](#索引-indexing)
 - [資料表約束 (Constraints)](#資料表約束-constraints)
 - [查詢優化與 EXPLAIN](#查詢優化與-explain)
+- [複寫 (Replication)](#複寫-replication)
+- [備份與還原 (Backup-and-Recovery)](#備份與還原-backup-and-recovery)
+
 ---
 
 # MySQL 交易隔離級別 (Transaction Isolation Level)
@@ -211,3 +214,36 @@ EXPLAIN SELECT * FROM users WHERE age > 30;
 - **`Extra`**: 額外資訊，例如 `Using where` (使用了 WHERE 過濾), `Using index` (使用了覆蓋索引)。
 
 ---
+
+# 複寫 (Replication)
+
+複寫是將一台資料庫 (Master) 的資料，即時、非同步地複製到一台或多台其他資料庫 (Slave) 的過程。這是透過 Master 寫入 Binary Log (binlog)，Slave 讀取並重放這些日誌來實現的。
+
+**主要用途：**
+1.  **讀寫分離 (Read-Write Splitting)**: 將寫入操作集中在 Master，將讀取操作分散到多個 Slaves，以擴展系統的讀取能力。
+2.  **高可用性 (High Availability)**: 當 Master 發生故障時，可以手動或自動將其中一個 Slave 提升為新的 Master，減少系統停機時間。
+3.  **資料備份**: 可以在 Slave 上進行備份操作，而不會影響 Master 的效能。
+
+---
+
+# 備份與還原 (Backup-and-Recovery)
+
+資料是系統的核心資產，建立可靠的備份與還原機制至關重要。
+
+## 邏輯備份 (Logical Backup)
+備份的是 SQL 陳述句 (`CREATE TABLE`, `INSERT INTO` ...)。
+
+- **工具**: `mysqldump`
+- **優點**: 備份檔案是可讀的 SQL，靈活性高，適合不同版本或不同系統間的遷移。
+- **缺點**: 備份和還原速度較慢。
+
+```bash
+# 備份整個資料庫
+mysqldump -u [user] -p [database_name] > backup.sql
+
+# 僅備份單一資料表
+mysqldump -u [user] -p [database_name] [table_name] > backup_table.sql
+
+# 還原資料庫
+mysql -u [user] -p [database_name] < backup.sql
+```
