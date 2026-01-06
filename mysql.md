@@ -5,7 +5,7 @@
 - [MySQL 基礎指令](#mysql-基礎指令)
 - [索引 (Indexing)](#索引-indexing)
 - [資料表約束 (Constraints)](#資料表約束-constraints)
-
+- [查詢優化與 EXPLAIN](#查詢優化與-explain)
 ---
 
 # MySQL 交易隔離級別 (Transaction Isolation Level)
@@ -192,5 +192,22 @@ CREATE TABLE orders (
     FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 ```
+
+---
+
+# 查詢優化與 EXPLAIN
+
+當您送出一個 SQL 查詢後，MySQL 內部的「查詢優化器」會分析並決定執行該查詢的最佳方式。`EXPLAIN` 指令可以讓我們了解優化器的決策過程，是診斷和優化慢查詢的必備工具。
+
+```sql
+-- 使用 EXPLAIN 分析查詢計畫
+EXPLAIN SELECT * FROM users WHERE age > 30;
+```
+
+**解讀 `EXPLAIN` 的關鍵欄位：**
+- **`type`**: 連接類型，顯示查詢的效率。從最好到最差依次是 `system` > `const` > `eq_ref` > `ref` > `range` > `index` > `ALL`。`ALL` 表示全表掃描，應盡量避免。
+- **`key`**: 實際使用的索引。
+- **`rows`**: 預估需要掃描的行數。
+- **`Extra`**: 額外資訊，例如 `Using where` (使用了 WHERE 過濾), `Using index` (使用了覆蓋索引)。
 
 ---
