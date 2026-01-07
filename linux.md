@@ -158,6 +158,9 @@ grep [options] 'pattern' [file_name]
 - `-l`：只列出包含符合模式的檔名，不顯示內容。
 - `-E`：使用擴充正規表示式 (E-grep)。
 - `-C k`：顯示符合行的前後 k 行內容 (Context)。
+- `-o`：只輸出「符合的部分」。
+- `-c`：只回傳「符合的行數」。
+- `--exclude` / `--include`：只顯示符合的檔名，--exclude=*.log。
 
 ## 5. 搜尋檔案與指令 (Searching Files & Commands)
 
