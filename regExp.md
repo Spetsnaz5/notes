@@ -5,6 +5,7 @@
 - [錨點 (Anchors)](#錨點-anchors)
 - [字元類別 (Character Classes)](#字元類別-character-classes)
 - [量詞 (Quantifiers)](#量詞-quantifiers)
+- [分組與捕獲 (Grouping & Capturing)](#分組與捕獲-grouping--capturing)
 
 ---
 
@@ -67,5 +68,21 @@
 在量詞後面加上一個 `?` 可以將其變為「非貪婪模式」，使其盡可能少地匹配。
 
 - **範例 (非貪婪)**：對於相同字串，`<div.*?>` 只會匹配到第一個 `</div>`。
+
+---
+
+## 分組與捕獲 (Grouping & Capturing)
+
+- `(pattern)`
+**捕獲型分組**：將多個字元組合成一個單元，並「捕獲」這次匹配的內容供後續使用（例如反向參照）。
+
+- `(?:pattern)`
+**非捕獲型分組**：只分組，不捕獲內容，效能稍好一些。
+
+- `|`
+**或 (Alternation)**：匹配 `|` 左邊或右邊的表達式。例如 `cat|dog` 可以匹配 "cat" 或 "dog"。
+
+- `\num`
+**反向參照 (Backreference)**：匹配第 `num` 個捕獲型分組所捕獲的內容。例如 `(\w)\1` 可以匹配連續兩個相同的單詞字元。
 
 ---
