@@ -7,6 +7,7 @@
 - [量詞 (Quantifiers)](#量詞-quantifiers)
 - [分組與捕獲 (Grouping & Capturing)](#分組與捕獲-grouping--capturing)
 - [預查 (Lookarounds)](#預查-lookarounds)
+- [修飾符 (Flags)](#修飾符-flags)
 
 ---
 
@@ -95,5 +96,15 @@
 - `(?!pattern)`：**正向否定預查**。確保當前位置的右邊**不能**匹配 `pattern`。例如 `Windows(?!NT)` 能匹配 "WindowsXP" 中的 "Windows"。
 - `(?<=pattern)`：**反向肯定預查**。確保當前位置的左邊**能**匹配 `pattern`。例如 `(?<=Mr\.)\s\w+` 能匹配 "Mr. Smith" 中的 " Smith"。
 - `(?<!pattern)`：**反向否定預查**。確保當前位置的左邊**不能**匹配 `pattern`。
+
+---
+
+## 修飾符 (Flags)
+修飾符也稱為模式，寫在正規表示式之外，用來影響整體的匹配行為。
+
+- `g` (Global)：**全域**搜尋，找到所有匹配項，而不是在找到第一個後就停止。
+- `i` (Ignore case)：**忽略大小寫**進行匹配。
+- `m` (Multiline)：**多行**模式。使 `^` 和 `$` 能匹配每一行的開始和結束，而不僅僅是整個字串的開始和結束。
+- `s` (dotAll)：允許 `.` 匹配換行符。
 
 ---
