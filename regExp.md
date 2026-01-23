@@ -6,6 +6,7 @@
 - [字元類別 (Character Classes)](#字元類別-character-classes)
 - [量詞 (Quantifiers)](#量詞-quantifiers)
 - [分組與捕獲 (Grouping & Capturing)](#分組與捕獲-grouping--capturing)
+- [預查 (Lookarounds)](#預查-lookarounds)
 
 ---
 
@@ -84,5 +85,15 @@
 
 - `\num`
 **反向參照 (Backreference)**：匹配第 `num` 個捕獲型分組所捕獲的內容。例如 `(\w)\1` 可以匹配連續兩個相同的單詞字元。
+
+---
+
+## 預查 (Lookarounds)
+預查是一種特殊的零寬度斷言，它只匹配位置，不消耗字元。
+
+- `(?=pattern)`：**正向肯定預查**。確保當前位置的右邊**能**匹配 `pattern`。例如 `Windows(?=95|XP)` 能匹配 "WindowsXP" 中的 "Windows"。
+- `(?!pattern)`：**正向否定預查**。確保當前位置的右邊**不能**匹配 `pattern`。例如 `Windows(?!NT)` 能匹配 "WindowsXP" 中的 "Windows"。
+- `(?<=pattern)`：**反向肯定預查**。確保當前位置的左邊**能**匹配 `pattern`。例如 `(?<=Mr\.)\s\w+` 能匹配 "Mr. Smith" 中的 " Smith"。
+- `(?<!pattern)`：**反向否定預查**。確保當前位置的左邊**不能**匹配 `pattern`。
 
 ---
