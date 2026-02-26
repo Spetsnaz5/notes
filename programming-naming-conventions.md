@@ -29,3 +29,21 @@
 ❌ 不建議：`doSomething()`、`action()`（語意不明）
 
 ---
+
+## 二、判斷類（Boolean Predicate）
+> 回傳 `true / false`，**強烈建議以 is / has / can 開頭**
+
+| 命名 | 說明 | 範例 |
+|----|----|----|
+| is | 是否為某狀態 | isActive() |
+| has | 是否擁有 | hasPermission() |
+| can | 是否能夠 | canEdit() |
+| should | 是否應該 | shouldRetry() |
+| exists | 是否存在 | existsInDb() |
+| contains | 是否包含 | containsKey() |
+| equals | 是否相等 | equalsTo() |
+| isValid | 是否有效 | isValidToken() |
+
+❌ 不建議：`checkUser()`（不知回傳型別）
+
+---
