@@ -47,3 +47,29 @@
 ❌ 不建議：`checkUser()`（不知回傳型別）
 
 ---
+
+## 三、屬性 / 狀態命名（Attributes / State）
+> 用於變數、DTO、Model 欄位
+
+| 命名 | 說明 |
+|----|----|
+| status | 狀態 |
+| type | 類型 |
+| options | 選項 |
+| attributes | 屬性集合 |
+| data | 原始資料 |
+| config | 設定 |
+| params | 參數 |
+| value | 值 |
+| info | 簡要資訊 |
+| details | 詳細資訊 |
+| meta | 中繼資料 |
+
+範例：
+```php
+$orderStatus
+$userType
+$requestParams
+```
+
+---
