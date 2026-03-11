@@ -73,3 +73,23 @@ $requestParams
 ```
 
 ---
+
+## 四、Getter / Setter（存取器）
+> 用於封裝物件屬性
+
+| 命名 | 說明 |
+|----|----|
+| get | 取得 |
+| set | 設定 |
+| retrieve | 擷取（偏正式） |
+| fetch | 抓取（可能遠端） |
+
+範例（Laravel）：
+```php
+getEmailAttribute()
+setPasswordAttribute()
+```
+
+❌ 不建議：`email()`（無法判斷用途）
+
+---
