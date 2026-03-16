@@ -93,3 +93,21 @@ setPasswordAttribute()
 ❌ 不建議：`email()`（無法判斷用途）
 
 ---
+
+## 五、測試命名（Testing）
+> 測試名稱應「可讀即文件」
+
+| 命名 | 說明 |
+|----|----|
+| test | PHPUnit 標準 |
+| mock | 模擬物件 |
+| assert | 斷言 |
+| expect | 預期行為 |
+
+推薦：
+```php
+test_user_can_create_order()
+test_guest_cannot_access_admin()
+```
+
+❌ 不建議：`test1()`、`testAAA()`
