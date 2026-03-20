@@ -25,3 +25,19 @@
 | execute | 執行 | executeTask() |
 
 ---
+
+# 二、查詢類（Query）
+
+用於 **只讀資料，不改變狀態**。
+
+| 命名 | 說明 | 範例 |
+|-----|-----|-----|
+| get | 取得單一資料 | getUser() |
+| find | 查找 | findUserById() |
+| findAll | 查找全部 | findAllUsers() |
+| list | 列出集合 | listOrders() |
+| query | 查詢 | queryProducts() |
+| search | 搜尋 | searchOrders() |
+| retrieve | 擷取 | retrieveConfig() |
+
+---
