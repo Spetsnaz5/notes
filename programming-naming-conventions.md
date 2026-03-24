@@ -41,3 +41,20 @@
 | retrieve | 擷取 | retrieveConfig() |
 
 ---
+
+# 三、Boolean 判斷類（Predicate）
+
+回傳 `true / false`
+
+| 命名 | 說明 | 範例 |
+|-----|-----|-----|
+| is | 是否為某狀態 | isActive() |
+| has | 是否擁有 | hasPermission() |
+| can | 是否能 | canEdit() |
+| should | 是否應該 | shouldRetry() |
+| exists | 是否存在 | existsInDb() |
+| contains | 是否包含 | containsKey() |
+| equals | 是否相等 | equalsTo() |
+| isValid | 是否有效 | isValidToken() |
+
+---
