@@ -58,3 +58,19 @@
 | isValid | 是否有效 | isValidToken() |
 
 ---
+
+# 四、資料轉換（Transform）
+
+資料轉換或解析。
+
+| 命名 | 說明 | 範例 |
+|-----|-----|-----|
+| to | 轉換 | toArray() |
+| from | 從資料建立 | fromJson() |
+| parse | 解析 | parseToken() |
+| map | 映射 | mapUserDto() |
+| convert | 轉換 | convertCurrency() |
+| format | 格式化 | formatDate() |
+| normalize | 正規化 | normalizeEmail() |
+
+---
