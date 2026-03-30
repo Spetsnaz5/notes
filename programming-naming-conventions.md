@@ -74,3 +74,23 @@
 | normalize | 正規化 | normalizeEmail() |
 
 ---
+
+# 五、屬性 / 狀態命名
+
+用於變數、DTO、Model 欄位。
+
+| 命名 | 說明 | 範例 |
+|-----|-----|-----|
+| status | 狀態 | orderStatus |
+| type | 類型 | userType |
+| options | 選項 | requestOptions |
+| attributes | 屬性集合 | userAttributes |
+| data | 原始資料 | responseData |
+| config | 設定 | appConfig |
+| params | 參數 | requestParams |
+| value | 值 | totalValue |
+| info | 簡要資訊 | userInfo |
+| details | 詳細資訊 | orderDetails |
+| meta | 中繼資料 | pageMeta |
+
+---
