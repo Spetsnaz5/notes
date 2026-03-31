@@ -94,3 +94,16 @@
 | meta | 中繼資料 | pageMeta |
 
 ---
+
+# 六、集合命名（Collection）
+
+表示多筆資料。
+
+| 命名 | 說明 | 範例 |
+|-----|-----|-----|
+| List | 有順序集合 | userList |
+| Set | 不重複集合 | productSet |
+| Map | Key-Value | orderMap |
+| Collection | 通用集合 | userCollection |
+
+---
