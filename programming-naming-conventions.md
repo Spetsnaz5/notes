@@ -107,3 +107,16 @@
 | Collection | 通用集合 | userCollection |
 
 ---
+
+# 七、Getter / Setter
+
+封裝物件屬性。
+
+| 命名 | 說明 | 範例 |
+|-----|-----|-----|
+| get | 取得 | getUser() |
+| set | 設定 | setPassword() |
+| retrieve | 擷取 | retrieveToken() |
+| fetch | 抓取 | fetchUser() |
+
+---
