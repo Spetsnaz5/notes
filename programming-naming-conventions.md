@@ -120,3 +120,110 @@
 | fetch | 抓取 | fetchUser() |
 
 ---
+
+# 八、初始化 / Lifecycle
+
+物件生命週期。
+
+| 命名 | 說明 | 範例 |
+|-----|-----|-----|
+| init | 初始化 | initCache() |
+| boot | 啟動 | bootService() |
+| setup | 設定 | setupEnvironment() |
+| configure | 配置 | configureApp() |
+| mount | 掛載 | mountComponent() |
+| destroy | 銷毀 | destroySession() |
+
+---
+
+# 九、事件 / Callback
+
+事件命名。
+
+| 命名 | 說明 | 範例 |
+|-----|-----|-----|
+| on | 事件觸發 | onUserCreated() |
+| before | 事件之前 | beforeSave() |
+| after | 事件之後 | afterLogin() |
+| when | 條件事件 | whenOrderPaid() |
+
+---
+
+# 十、測試命名（Testing）
+
+測試名稱應「可讀即文件」。
+
+| 命名 | 說明 | 範例 |
+|-----|-----|-----|
+| test | PHPUnit 標準 | test_user_can_create_order |
+| mock | 模擬物件 | mockPaymentGateway |
+| assert | 斷言 | assertOrderPaid |
+| expect | 預期 | expectException |
+
+---
+
+# 十一、架構層命名（Architecture Naming）
+
+常見於大型系統。
+
+| 命名 | 說明 | 範例 |
+|-----|-----|-----|
+| Factory | 建立物件 | UserFactory |
+| Builder | 建立複雜物件 | OrderBuilder |
+| Manager | 管理物件 | CacheManager |
+| Provider | 提供服務 | AuthProvider |
+| Resolver | 解析 | RouteResolver |
+| Adapter | 轉接 | PaymentAdapter |
+| Strategy | 策略 | PaymentStrategy |
+| Handler | 處理流程 | OrderHandler |
+| Service | 商業邏輯 | OrderService |
+| Repository | 資料存取 | UserRepository |
+
+---
+
+# 十二、DTO / VO / Entity 命名
+
+DDD 或分層架構常見。
+
+| 命名 | 說明 | 範例 |
+|-----|-----|-----|
+| DTO | Data Transfer Object | UserDto |
+| VO | Value Object | MoneyVO |
+| Entity | 具有 Identity | OrderEntity |
+| Model | ORM Model | UserModel |
+
+---
+
+# 十三、API 命名建議
+
+RESTful API。
+
+| HTTP 方法 | 說明 | 範例 |
+|-----|-----|-----|
+| GET | 取得資料 | GET /users |
+| POST | 建立資料 | POST /users |
+| PUT | 更新資料 | PUT /users/{id} |
+| DELETE | 刪除資料 | DELETE /users/{id} |
+
+---
+
+# 十四、常見命名反模式
+
+| 壞命名 | 問題 | 建議 |
+|-----|-----|-----|
+| doSomething | 無語意 | createOrder |
+| handleData | 不清楚 | processOrder |
+| processStuff | 不明確 | processPayment |
+| util | 太泛用 | DateFormatter |
+| helper | 容易變垃圾桶 | OrderCalculator |
+
+---
+
+# 命名最佳實務總結
+
+| 原則 | 說明 | 範例 |
+|-----|-----|-----|
+| Command vs Query 分離 | 修改與讀取分開 | createUser / getUser |
+| Boolean 使用 is/has/can | 清楚表達判斷 | isPaid / hasStock |
+| 集合使用複數 | 表示多筆資料 | users / orders |
+| 動詞 + 名詞 | 提高可讀性 | calculatePrice |
