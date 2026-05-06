@@ -13,9 +13,17 @@
   - [例外處理 (Exception Handling)](#例外處理-exception-handling)
 - [常用函式速查表](#常用函式速查表)
   - [陣列 (Array) 相關函式](#陣列-array-相關函式)
+  - [陣列排序函式](#陣列排序函式)
   - [字串 (String) 相關函式](#字串-string-相關函式)
+  - [數學函式](#數學函式)
   - [類別與物件 (Class & Object) 相關函式](#類別與物件-class--object-相關函式)
   - [魔術常數 (Magic Constants)](#魔術常數-magic-constants)
+- [型別系統 (Type System)](#型別系統-type-system)
+- [正規表達式 (Regex)](#正規表達式-regex)
+- [Generator（生成器）](#generator生成器)
+- [Closure（閉包）進階](#closure閉包進階)
+- [日期與時間 (DateTime)](#日期與時間-datetime)
+- [SPL 資料結構](#spl-資料結構)
 - [命名空間 (Namespaces)](#命名空間-namespaces)
 - [PHP 版本新功能](#php-版本新功能)
   - [PHP 7.0](#php-70)
@@ -470,6 +478,161 @@ $unique = array_unique($input);
 // $unique is [0 => 'a', 1 => 'b', 3 => 'c'] (keys are preserved)
 ```
 
+#### `array_reduce()`
+使用回呼函式將陣列逐步累積為單一值。
+```php
+$numbers = [1, 2, 3, 4, 5];
+
+$sum = array_reduce($numbers, fn($carry, $item) => $carry + $item, 0);
+// 15
+
+$product = array_reduce($numbers, fn($carry, $item) => $carry * $item, 1);
+// 120
+
+// 將陣列轉成關聯陣列
+$users = [['id' => 1, 'name' => 'Alice'], ['id' => 2, 'name' => 'Bob']];
+$byId = array_reduce($users, function ($carry, $user) {
+    $carry[$user['id']] = $user['name'];
+    return $carry;
+}, []);
+// [1 => 'Alice', 2 => 'Bob']
+```
+
+#### `array_walk()`
+對陣列每個元素套用回呼函式，**直接修改原陣列**（與 `array_map` 不同，不回傳新陣列）。
+```php
+$prices = ['apple' => 1.5, 'banana' => 0.8, 'cherry' => 3.0];
+
+// $key 是選填參數
+array_walk($prices, function (&$price, $key) {
+    $price = '$' . number_format($price, 2);
+});
+// $prices = ['apple' => '$1.50', 'banana' => '$0.80', 'cherry' => '$3.00']
+
+// 傳入額外參數
+array_walk($prices, fn(&$v, $k, $prefix) => $v = $prefix . $v, 'Price: ');
+```
+
+#### `array_splice()`
+從陣列中移除一段元素，並可選擇性地插入新元素。
+```php
+$arr = ['a', 'b', 'c', 'd', 'e'];
+
+// 從 index 1 移除 2 個元素
+$removed = array_splice($arr, 1, 2);
+// $arr = ['a', 'd', 'e'], $removed = ['b', 'c']
+
+// 移除並插入
+$arr = ['a', 'b', 'c', 'd'];
+array_splice($arr, 1, 2, ['x', 'y', 'z']);
+// $arr = ['a', 'x', 'y', 'z', 'd']
+```
+
+## 陣列排序函式
+
+#### `sort()` / `rsort()`
+升冪 / 降冪排序，**重新索引**鍵值。
+```php
+$a = [3, 1, 4, 1, 5];
+sort($a);  // [1, 1, 3, 4, 5]
+rsort($a); // [5, 4, 3, 1, 1]
+```
+
+#### `asort()` / `arsort()`
+升冪 / 降冪排序，**保留**原有鍵值對應。
+```php
+$a = ['b' => 3, 'a' => 1, 'c' => 2];
+asort($a);  // ['a'=>1, 'c'=>2, 'b'=>3]
+arsort($a); // ['b'=>3, 'c'=>2, 'a'=>1]
+```
+
+#### `ksort()` / `krsort()`
+依**鍵**升冪 / 降冪排序。
+```php
+$a = ['c' => 3, 'a' => 1, 'b' => 2];
+ksort($a);  // ['a'=>1, 'b'=>2, 'c'=>3]
+```
+
+#### `usort()`
+以自訂回呼函式排序（重新索引）。
+```php
+$users = [
+    ['name' => 'Charlie', 'age' => 30],
+    ['name' => 'Alice',   'age' => 25],
+    ['name' => 'Bob',     'age' => 28],
+];
+
+usort($users, fn($a, $b) => $a['age'] <=> $b['age']);
+// 依 age 升冪：Alice, Bob, Charlie
+```
+
+#### `uasort()` / `uksort()`
+自訂排序並**保留鍵**（`uasort`）、依**鍵**自訂排序（`uksort`）。
+
+#### `array_multisort()`
+同時對多個陣列或多欄位排序。
+```php
+$names = ['Charlie', 'Alice', 'Bob'];
+$ages  = [30, 25, 28];
+
+array_multisort($ages, SORT_ASC, $names);
+// $ages:  [25, 28, 30]
+// $names: ['Alice', 'Bob', 'Charlie']
+```
+
+## 數學函式
+
+#### 常用數學函式
+```php
+abs(-5);          // 5（絕對值）
+ceil(4.1);        // 5（無條件進位）
+floor(4.9);       // 4（無條件捨去）
+round(4.5);       // 5（四捨五入）
+round(4.567, 2);  // 4.57（保留兩位小數）
+
+max(1, 2, 3);     // 3
+min(1, 2, 3);     // 1
+max([1, 2, 3]);   // 3（也接受陣列）
+
+pow(2, 10);       // 1024（次方）
+sqrt(16);         // 4.0（平方根）
+log(M_E);         // 1.0（自然對數）
+log(100, 10);     // 2.0（log₁₀(100)）
+
+fmod(10, 3);      // 1.0（浮點數取餘）
+intdiv(10, 3);    // 3（整數除法，PHP 7+）
+```
+
+#### 隨機數
+```php
+rand(1, 100);          // 1~100 隨機整數（不適合加密用途）
+mt_rand(1, 100);       // 使用 Mersenne Twister，比 rand() 快且更均勻
+random_int(1, 100);    // 密碼學安全的隨機整數（PHP 7+）
+random_bytes(16);      // 16 bytes 密碼學安全隨機二進位字串
+```
+
+#### 進位轉換
+```php
+base_convert('ff', 16, 10); // '255'（十六進位轉十進位）
+decbin(255);   // '11111111'（十進位轉二進位字串）
+decoct(8);     // '10'
+dechex(255);   // 'ff'
+bindec('1010'); // 10（二進位字串轉十進位）
+```
+
+#### 數學常數
+```php
+M_PI;    // 3.14159265...
+M_E;     // 2.71828182...
+M_SQRT2; // 1.41421356...
+INF;     // 無限大
+NAN;     // 非數值
+
+is_infinite(INF); // true
+is_nan(NAN);      // true
+is_finite(1.0);   // true
+```
+
 ## 類別與物件 (Class & Object) 相關函式
 
 #### `method_exists()`
@@ -627,6 +790,416 @@ number_format(1234567.891, 2, '.', ','); // '1,234,567.89'
 - `__CLASS__`: 類別名稱。
 - `__METHOD__`: 類別的方法名稱。
 - `__NAMESPACE__`: 目前的命名空間名稱。
+
+---
+
+# 型別系統 (Type System)
+
+## 型別判斷函式
+```php
+is_int(42);        // true
+is_float(3.14);    // true
+is_string('hi');   // true
+is_bool(false);    // true
+is_null(null);     // true
+is_array([]);      // true
+is_object($obj);   // true
+is_numeric('42');  // true（字串數字也算）
+is_callable($fn);  // true
+```
+
+## 型別轉換（Casting）
+```php
+(int)    '42abc'; // 42
+(float)  '3.14';  // 3.14
+(string) 100;     // '100'
+(bool)   0;       // false
+(array)  'hello'; // ['hello']
+(object) ['a'=>1];// stdClass { a: 1 }
+```
+
+## `settype()` / `gettype()`
+```php
+$var = '42';
+settype($var, 'integer'); // $var 變成 int 42
+
+gettype(3.14);  // 'double'
+gettype([]);    // 'array'
+gettype(null);  // 'NULL'
+```
+
+## `intval()` / `floatval()` / `strval()`
+安全地轉換型別，可指定進位。
+```php
+intval('0x1A', 16); // 26
+intval('010', 8);   // 8（八進位）
+floatval('1.5e2');  // 150.0
+strval(true);       // '1'
+```
+
+## 型別比較：`==` vs `===`
+```php
+0   == false;  // true（型別寬鬆比較）
+0   === false; // false（型別嚴格比較）
+''  == false;  // true
+null == false; // true
+'1' == true;   // true
+'1' === true;  // false
+```
+
+---
+
+# 正規表達式 (Regex)
+
+## 常用函式
+
+| 函式 | 說明 |
+|------|------|
+| `preg_match($pattern, $subject, &$matches)` | 比對第一個符合，成功回傳 1 |
+| `preg_match_all($pattern, $subject, &$matches)` | 比對所有符合，回傳比對次數 |
+| `preg_replace($pattern, $replacement, $subject)` | 取代符合的字串 |
+| `preg_replace_callback($pattern, $callback, $subject)` | 以回呼函式處理每個符合 |
+| `preg_split($pattern, $subject)` | 以 pattern 分割字串 |
+| `preg_quote($str)` | 跳脫字串中的特殊字元，用於動態建立 pattern |
+
+## Pattern 速查
+
+### 字元類別
+```
+.       任意字元（不含換行）
+\d      數字 [0-9]
+\D      非數字
+\w      字母、數字、底線 [a-zA-Z0-9_]
+\W      非 \w
+\s      空白字元（空格、Tab、換行）
+\S      非空白
+[abc]   a 或 b 或 c
+[^abc]  不是 a b c
+[a-z]   a 到 z
+```
+
+### 數量詞
+```
+*       0 次或多次（貪婪）
++       1 次或多次（貪婪）
+?       0 或 1 次
+{n}     恰好 n 次
+{n,}    至少 n 次
+{n,m}   n 到 m 次
+*?  +?  非貪婪（最少匹配）
+```
+
+### 錨點與群組
+```
+^       字串開頭（多行模式下為行首）
+$       字串結尾（多行模式下為行尾）
+\b      單字邊界
+(abc)   捕獲群組
+(?:abc) 非捕獲群組
+(?P<name>abc)  命名捕獲群組
+a|b     a 或 b
+```
+
+### 修飾符（Flags）
+```
+/pattern/i   不區分大小寫
+/pattern/m   多行模式（^ $ 匹配每行）
+/pattern/s   . 匹配換行符
+/pattern/u   Unicode 模式（處理 UTF-8）
+/pattern/x   忽略空白，允許註解（可讀性）
+```
+
+## 範例
+
+```php
+// 擷取所有電子郵件
+preg_match_all('/[\w.+-]+@[\w-]+\.[\w.]+/', $text, $matches);
+$emails = $matches[0];
+
+// 命名群組捕獲
+preg_match('/(?P<year>\d{4})-(?P<month>\d{2})-(?P<day>\d{2})/', '2025-01-15', $m);
+echo $m['year'];  // '2025'
+echo $m['month']; // '01'
+
+// 以回呼取代（每個符合單獨處理）
+$result = preg_replace_callback('/\d+/', fn($m) => $m[0] * 2, 'I have 3 cats and 5 dogs');
+// 'I have 6 cats and 10 dogs'
+
+// 動態 pattern（避免特殊字元問題）
+$keyword = preg_quote('1+1=2', '/');
+preg_match("/$keyword/", '1+1=2 is true'); // 安全匹配
+
+// 分割
+$parts = preg_split('/[\s,;]+/', 'a, b; c  d');
+// ['a', 'b', 'c', 'd']
+```
+
+---
+
+# Generator（生成器）
+`yield` 讓函式變成 Generator，每次呼叫 `current()` / `next()` 時才執行至下一個 `yield`，不會一次載入全部資料。
+
+## 基本用法
+```php
+function fibonacci(): Generator {
+    [$a, $b] = [0, 1];
+    while (true) {
+        yield $a;
+        [$a, $b] = [$b, $a + $b];
+    }
+}
+
+$gen = fibonacci();
+for ($i = 0; $i < 8; $i++) {
+    echo $gen->current() . ' '; // 0 1 1 2 3 5 8 13
+    $gen->next();
+}
+```
+
+## yield 鍵值對
+```php
+function indexedItems(): Generator {
+    yield 'first'  => 'apple';
+    yield 'second' => 'banana';
+}
+
+foreach (indexedItems() as $key => $value) {
+    echo "$key: $value\n";
+}
+```
+
+## 向 Generator 傳值（`send()`）
+```php
+function logger(): Generator {
+    while (true) {
+        $msg = yield;
+        echo '[LOG] ' . $msg . "\n";
+    }
+}
+
+$log = logger();
+$log->current();        // 啟動 Generator
+$log->send('App started');  // [LOG] App started
+$log->send('User login');   // [LOG] User login
+```
+
+## `yield from`（委派）
+```php
+function inner(): Generator {
+    yield 1;
+    yield 2;
+    return 'inner done'; // Generator 的回傳值
+}
+
+function outer(): Generator {
+    $result = yield from inner(); // 取得 inner 的 return 值
+    echo $result; // 'inner done'
+    yield 3;
+}
+
+foreach (outer() as $v) {
+    echo $v . ' '; // 1 2 3
+}
+```
+
+---
+
+# Closure（閉包）進階
+
+## 捕捉外部變數（`use`）
+```php
+$multiplier = 3;
+
+$fn = function (int $n) use ($multiplier): int {
+    return $n * $multiplier;
+};
+
+echo $fn(5); // 15
+
+// 以傳參考方式捕捉，閉包內修改會影響外部
+$count = 0;
+$increment = function () use (&$count): void {
+    $count++;
+};
+$increment();
+echo $count; // 1
+```
+
+## 箭頭函式自動捕捉（PHP 7.4+）
+箭頭函式（`fn`）自動以**傳值**方式捕捉外部變數，無需 `use`。
+```php
+$factor = 10;
+$fn = fn($n) => $n * $factor; // 自動捕捉 $factor
+echo $fn(3); // 30
+```
+
+## `Closure::bind()` / `bindTo()`
+將閉包綁定到指定物件，使其可存取該物件的 `private`/`protected` 成員。
+```php
+class Counter {
+    private int $count = 0;
+}
+
+$increment = Closure::bind(
+    function (int $by) { $this->count += $by; },
+    new Counter(),
+    Counter::class
+);
+$increment(5);
+
+// bindTo() 是實例方法版本
+$getCount = function () { return $this->count; };
+$bound = $getCount->bindTo(new Counter(), Counter::class);
+echo $bound(); // 0
+```
+
+## `Closure::call()` （PHP 7.0+）
+一步完成綁定並呼叫，比 `bind()` 更簡潔。
+```php
+class Foo {
+    private string $name = 'Foo';
+}
+
+$getName = function () { return $this->name; };
+echo $getName->call(new Foo()); // 'Foo'
+```
+
+## 靜態閉包（`static function`）
+靜態閉包無法綁定 `$this`，可避免意外持有物件引用。
+```php
+$fn = static function (int $n): int {
+    return $n * 2;
+};
+```
+
+---
+
+# 日期與時間 (DateTime)
+
+## 建立
+```php
+$now  = new DateTimeImmutable();               // 現在
+$dt   = new DateTimeImmutable('2025-01-15 10:30:00');
+$dt   = new DateTimeImmutable('now', new DateTimeZone('Asia/Taipei'));
+
+// 從格式字串解析
+$dt   = DateTimeImmutable::createFromFormat('Y/m/d', '2025/01/15');
+```
+
+## 格式化（`format()`）
+```php
+$dt = new DateTimeImmutable('2025-01-15 10:30:00');
+
+$dt->format('Y-m-d');            // '2025-01-15'
+$dt->format('Y-m-d H:i:s');     // '2025-01-15 10:30:00'
+$dt->format('D, d M Y');        // 'Wed, 15 Jan 2025'
+$dt->format('U');                // Unix timestamp
+```
+
+常用格式字元：
+
+| 字元 | 意義 | 範例 |
+|------|------|------|
+| `Y` | 四位年 | 2025 |
+| `m` | 兩位月 | 01–12 |
+| `d` | 兩位日 | 01–31 |
+| `H` | 24h 時 | 00–23 |
+| `i` | 分 | 00–59 |
+| `s` | 秒 | 00–59 |
+| `N` | 星期（1=週一） | 1–7 |
+| `U` | Unix timestamp | 1736936400 |
+
+## 加減時間（`modify()` / `add()` / `sub()`）
+`DateTimeImmutable` 回傳新物件，`DateTime` 修改自身。
+```php
+$dt = new DateTimeImmutable('2025-01-15');
+
+$dt->modify('+7 days');           // 2025-01-22
+$dt->modify('next Monday');       // 下個星期一
+$dt->add(new DateInterval('P1Y2M3D')); // +1年2月3天
+$dt->sub(new DateInterval('PT2H'));    // -2小時
+```
+
+## 比較
+```php
+$a = new DateTimeImmutable('2025-01-01');
+$b = new DateTimeImmutable('2025-06-01');
+
+$a < $b;  // true
+$a == $b; // false
+
+$diff = $a->diff($b);
+echo $diff->days;   // 151
+echo $diff->months; // 5
+```
+
+## Unix Timestamp 互轉
+```php
+$ts = time();                          // 目前 Unix timestamp
+$dt = new DateTimeImmutable('@' . $ts); // 從 timestamp 建立
+$ts = $dt->getTimestamp();             // 取回 timestamp
+```
+
+---
+
+# SPL 資料結構
+
+## `SplStack`（後進先出 LIFO）
+```php
+$stack = new SplStack();
+$stack->push('a');
+$stack->push('b');
+$stack->push('c');
+
+echo $stack->top();  // 'c'
+echo $stack->pop();  // 'c'
+echo $stack->count(); // 2
+```
+
+## `SplQueue`（先進先出 FIFO）
+```php
+$queue = new SplQueue();
+$queue->enqueue('first');
+$queue->enqueue('second');
+$queue->enqueue('third');
+
+echo $queue->dequeue(); // 'first'
+echo $queue->bottom();  // 'second'（查看但不移除）
+```
+
+## `SplMinHeap` / `SplMaxHeap`（優先佇列）
+```php
+$heap = new SplMinHeap();
+$heap->insert(5);
+$heap->insert(1);
+$heap->insert(3);
+
+while (!$heap->isEmpty()) {
+    echo $heap->extract() . ' '; // 1 3 5（最小值優先）
+}
+```
+
+## `SplDoublyLinkedList`
+雙向鏈結串列，可從兩端高效插入/刪除。
+```php
+$list = new SplDoublyLinkedList();
+$list->push('b');
+$list->unshift('a'); // 加到開頭
+$list->push('c');
+
+foreach ($list as $v) {
+    echo $v . ' '; // a b c
+}
+```
+
+## `SplFixedArray`
+固定長度陣列，記憶體比普通陣列節省約 37%。
+```php
+$arr = new SplFixedArray(5);
+$arr[0] = 'a';
+$arr[1] = 'b';
+echo $arr->getSize(); // 5
+```
 
 ---
 
@@ -851,16 +1424,6 @@ function process(object $obj): void {
 }
 ```
 
-## `is_countable()`
-檢查變數是否可傳入 `count()`（陣列或實現 `Countable` 的物件），避免 PHP 7.2 起對非可數變數呼叫 `count()` 產生的警告。
-```php
-$items = [1, 2, 3];
-
-if (is_countable($items)) {
-    echo count($items); // 3
-}
-```
-
 ## Abstract Method Override
 子類別覆寫 Trait 中的抽象方法時，簽名規則放寬，允許更改參數名稱與型別（相容性擴展）。
 
@@ -897,6 +1460,16 @@ $sql = <<<SQL
     FROM users
     WHERE id = 1
     SQL; // 結束標記可縮排，不需對齊左邊界
+```
+
+## `is_countable()`
+檢查變數是否可傳入 `count()`（陣列或實現 `Countable` 的物件）。
+```php
+$items = [1, 2, 3];
+
+if (is_countable($items)) {
+    echo count($items); // 3
+}
 ```
 
 # PHP 7.4
@@ -1133,6 +1706,27 @@ enum Status: int implements HasLabel {
 }
 
 echo Status::Active->label(); // '啟用'
+```
+
+## `Enum::cases()`
+回傳所有 case 的陣列，常用於生成下拉選單或連同 `array_column` 一起使用。
+```php
+enum Status: string {
+    case Active   = 'active';
+    case Inactive = 'inactive';
+    case Pending  = 'pending';
+}
+
+// 取得所有 case
+Status::cases();
+// [Status::Active, Status::Inactive, Status::Pending]
+
+// 建立選項陣列（用於表單下拉選單）
+$options = array_column(
+    array_map(fn($c) => ['value' => $c->value, 'label' => $c->name], Status::cases()),
+    null
+);
+// [['value'=>'active','label'=>'Active'], ...]
 ```
 
 ## Readonly Properties
