@@ -266,6 +266,9 @@ git revert --no-commit <commit-hash>
 # 暫存目前的變更
 git stash
 
+# 暫存目前的變更 (包含 untracked files)
+git stash -u
+
 # 暫存並加上訊息
 git stash save "你的訊息"
 
@@ -309,6 +312,16 @@ git push <remote-name> <tag-name>
 ```
 
 ## 9. Ignoring Files (忽略檔案)
+
+### 移除追蹤但保留實體檔案
+
+```bash
+# 將已追蹤的檔案從 Git 索引中移除，但不刪除實體檔案
+git rm --cached <file>
+
+# 將已追蹤的目錄從 Git 索引中移除，但不刪除實體目錄
+git rm --cached -r <folder>
+```
 
 ### `.gitignore`
 在專案根目錄建立一個名為 `.gitignore` 的檔案，用來告訴 Git 哪些檔案或目錄應該被忽略，不納入版本控制。
