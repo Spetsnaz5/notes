@@ -298,8 +298,11 @@ git stash clear
 # 顯示所有標籤
 git tag
 
-# 為當前 commit 建立標籤
+# 建立 lightweight tag (輕量標籤)
 git tag <tag-name>
+
+# 建立 annotated tag (附註標籤，推薦用於 GitHub Release)
+git tag -a v1.0.0 -m "Release version 1.0.0"
 
 # 為指定的 commit 建立標籤
 git tag <tag-name> <commit-hash>
@@ -307,9 +310,20 @@ git tag <tag-name> <commit-hash>
 # 推送所有標籤到遠端
 git push --tags
 
-# 推送指定標籤到遠端
+# 推送指定標籤到遠端 (推送後即可在 GitHub Releases 頁面建立 Release)
 git push <remote-name> <tag-name>
+
+# 刪除本地標籤
+git tag -d <tag-name>
+
+# 刪除遠端標籤
+git push <remote-name> --delete <tag-name>
 ```
+
+> **與 Composer 的關係**：將 tag 推送至 GitHub 後，若套件已發布於 [Packagist](https://packagist.org/)，Packagist 會自動同步該 tag 作為版本號。Composer 即可透過版本約束安裝指定版本：
+> ```bash
+> composer require vendor/package:^1.0.0
+> ```
 
 ## 9. Ignoring Files (忽略檔案)
 
