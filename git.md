@@ -216,6 +216,9 @@ git diff HEAD
 
 # 比較兩個分支之間的差異
 git diff <branch1>..<branch2>
+
+# 只列出與 main 分叉後到指定分支的變更檔名(... = 從共同祖先開始比較)
+git diff --name-only main...branch_future
 ```
 
 ## 6. Undoing Changes (還原變更)
