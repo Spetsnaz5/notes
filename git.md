@@ -252,6 +252,22 @@ git reset --mixed <commit-hash>
 git reset --hard <commit-hash>
 ```
 
+### `git clean`
+刪除工作區中**未追蹤 (untracked)** 的檔案或資料夾。
+```bash
+# 預覽會刪除哪些檔案（dry run，不會真的刪除）
+git clean -n
+
+# 刪除未追蹤的檔案
+git clean -f
+
+# 刪除未追蹤的檔案和資料夾
+git clean -fd
+
+# 刪除未追蹤的檔案，包含 .gitignore 忽略的檔案
+git clean -fx
+```
+
 ### `git revert <commit-hash>`
 建立一個新的 commit 來撤銷指定 commit 的變更。這是一種安全、不會改寫歷史的還原方式，適用於已推送到遠端分支的 commit。
 ```bash
