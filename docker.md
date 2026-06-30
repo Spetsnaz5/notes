@@ -21,6 +21,14 @@
 - `docker push <username>/<image-name>`: 將本地映像檔推送到 Registry， **myusername/myapp:1.0**。
 - `docker tag <source-image:tag> <target-image:tag>`: 為映像檔新增一個標籤。
 - `docker rmi <image-id or image-name>`: 移除一個或多個本地映像檔。
+- `docker build [OPTIONS] <path>`: 依據 Dockerfile 建構映像檔，`<path>` 為 Dockerfile 所在目錄（`.` 代表當前目錄）。
+  - `-t, --tag <name:tag>`: 指定映像檔名稱與標籤（如 `myapp:1.0`，省略 tag 預設為 `latest`）。
+  - `-f, --file <Dockerfile>`: 指定 Dockerfile 路徑（預設為 `<path>/Dockerfile`）。
+  - `--no-cache`: 不使用快取，強制重新執行每個步驟。
+  - `--pull`: 總是嘗試拉取最新的基礎映像檔。
+  - `--build-arg <KEY=VALUE>`: 傳入建構階段的 `ARG` 變數。
+  - `--target <stage>`: 指定多階段建構 (Multi-stage build) 的目標階段。
+  - `--platform <platform>`: 指定目標平台（如 `linux/amd64`、`linux/arm64`）。
 
 ### 容器 (Containers)
 - `docker start <container-id>`: 啟動容器。
