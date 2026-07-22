@@ -176,6 +176,17 @@ find [path] [expressions]
 - `-size +10M`：搜尋大於 10MB 的檔案。
 - `-exec command {} \;`：對每個搜尋結果執行指定的指令。
 
+**範例：找出所有 `.php` 檔案中包含指定字串的檔案**
+```bash
+find . -name '*.php' -exec grep -l 'search_string' {} \;
+```
+- `grep -l`：只輸出含有符合內容的**檔名**（不顯示內容）。
+- 若要同時顯示行號與內容，改用 `grep -n`：
+```bash
+find . -name '*.php' -exec grep -n 'search_string' {} +
+```
+- `{} +`：將所有結果一次傳給 grep，效能優於 `{} \;`（逐一執行）。
+
 ### `whereis`
 查找指令的可執行檔、原始碼、說明文件的位置。
 ```bash
@@ -334,6 +345,18 @@ curl [options] [URL]
 ```bash
 host [domain_name]
 ```
+
+### `lsof`
+列出系統中所有已開啟的檔案（包含 Socket、管道、網路連線等）。
+```bash
+lsof [options]
+```
+- `-i :[port]`：列出使用指定埠號的行程（例如 `lsof -i :80`）。
+- `-i tcp` / `-i udp`：只列出 TCP 或 UDP 連線。
+- `-p [PID]`：列出指定行程開啟的所有檔案。
+- `-u [user]`：列出指定使用者開啟的所有檔案。
+- `-t`：只輸出 PID，常搭配 `kill` 使用（例如 `kill $(lsof -t -i :8080)`）。
+- `+D [dir]`：列出指定目錄下所有被開啟的檔案。
 
 ## 10. 其他指令 (Miscellaneous)
 
