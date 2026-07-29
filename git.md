@@ -194,6 +194,9 @@ git log
 
 # 查看精簡記錄
 git log --oneline
+
+# 只查看 merge commit，且訊息包含 "feature/abc"
+git log --merges --grep="feature/abc"
 ```
 
 ### `git reflog`
