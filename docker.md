@@ -1,3 +1,5 @@
+# Docker
+
 ## 索引目錄
 
 - [核心指令 (Core Commands)](#核心指令-core-commands)
@@ -31,6 +33,7 @@
   - `--platform <platform>`: 指定目標平台（如 `linux/amd64`、`linux/arm64`）。
 
 ### 容器 (Containers)
+
 - `docker start <container-id>`: 啟動容器。
 - `docker stop <container-id>`: 停止容器。
 - `docker restart <container-id>`: 重啟容器。
@@ -98,7 +101,7 @@
 
 定義多個容器服務的設定
 
-- `docker compose ps`: 列出所有由 Compose 啟動的容器。 
+- `docker compose ps`: 列出所有由 Compose 啟動的容器。
 - `docker compose up`: 建立並啟動所有服務。
   - `-d`: 在背景執行。
   - `--build`: 在啟動前重新建構映像檔。
@@ -123,6 +126,7 @@
 ---
 
 ## 基本結構
+
 ``` yml
 version: <version>                  # Compose 文件版本
 services:                           # 定義服務
@@ -161,7 +165,8 @@ networks:                           # 定義網路
     driver: <driver>                  # 可選：bridge, overlay, host
 ```
 
-## 多容器服務整合 
+## 多容器服務整合
+
 ``` yml
 version: "3.8"
 services:
@@ -208,7 +213,6 @@ networks:
     driver: bridge
 ```
 
-
 ## Dockerfile
 
 建構自訂映像檔
@@ -240,7 +244,7 @@ networks:
 | `USER` | 指定執行指令的使用者。 |
 | | `USER www-data` |
 | `HEALTHCHECK` | 指定如何檢查容器是否健康。 |
-| | `HEALTHCHECK --interval=5m --timeout=3s CMD curl -f http://localhost/ || exit 1` |
+| | `HEALTHCHECK --interval=5m --timeout=3s CMD curl -f <http://localhost/> \|\| exit 1` |
 | `ONBUILD` | 當其他映像檔 `FROM` 此映像檔時觸發的命令。 |
 | | `ONBUILD COPY . /app/src` |
 | `SHELL` | 指定 `RUN` 指令使用的 shell。 |

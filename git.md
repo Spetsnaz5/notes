@@ -1,6 +1,7 @@
 # Git Command Cheatsheet
 
 ## 目錄
+
 - [1. Setup and Basics (設定與基礎)](#1-setup-and-basics-設定與基礎)
 - [2. Everyday Commands (日常指令)](#2-everyday-commands-日常指令)
 - [3. Working with Remotes (遠端協作)](#3-working-with-remotes-遠端協作)
@@ -14,19 +15,25 @@
 ## 1. Setup and Basics (設定與基礎)
 
 ### `git init`
+
 建立新的本地端 Repository。
+
 ```bash
 git init
 ```
 
 ### `git clone`
+
 複製遠端的 Repository 檔案到本地端。
+
 ```bash
 git clone [Repository URL]
 ```
 
 ### `git remote`
+
 與遠端倉庫建立連接。
+
 ```bash
 # 新增遠端
 git remote add <remote-name> <Repository URL>
@@ -38,13 +45,17 @@ git remote -v
 ## 2. Everyday Commands (日常指令)
 
 ### `git status`
+
 檢查本地端檔案異動狀態。
+
 ```bash
 git status
 ```
 
 ### `git add`
+
 將檔案加入暫存區 (Staging Area)。
+
 ```bash
 # 將所有變更的檔案加入
 git add .
@@ -54,7 +65,9 @@ git add [檔案或資料夾]
 ```
 
 ### `git commit`
+
 將暫存區的內容建立一個新的 commit。
+
 ```bash
 # 開啟編輯器輸入 commit 訊息
 git commit
@@ -66,7 +79,9 @@ git commit -m "你的 commit 訊息"
 ## 3. Working with Remotes (遠端協作)
 
 ### `git fetch`
+
 從遠端 Repository 下載最新的 commit，但**不會**自動合併。
+
 ```bash
 # 獲取預設遠端 (origin) 的所有分支更新
 git fetch
@@ -79,7 +94,9 @@ git fetch <remote-name> <branch-name>
 ```
 
 ### `git pull`
+
 從遠端 Repository 拉取最新的 commit 並**自動合併**至當前分支 (相當於 `git fetch` + `git merge`)。
+
 ```bash
 # 拉取並合併預設遠端 (origin) 的當前分支
 git pull
@@ -89,7 +106,9 @@ git pull <remote-name> <branch-name>
 ```
 
 ### `git push`
+
 將本地的 commit 推送到遠端 Repository。
+
 ```bash
 # 推送當前分支至預設遠端 (origin)
 git push
@@ -113,7 +132,9 @@ git push <remote-name> --delete <branch-name>
 ## 4. Branching and Merging (分支與合併)
 
 ### `git branch`
+
 管理分支。
+
 ```bash
 # 顯示所有本地分支
 git branch
@@ -135,7 +156,9 @@ git branch -m <old-branch-name> <new-branch-name>
 ```
 
 ### `git checkout`
+
 切換分支或還原工作區的檔案。
+
 ```bash
 # 切換至指定分支
 git checkout <branch-name>
@@ -148,31 +171,41 @@ git checkout <commit-hash>
 ```
 
 ### `git merge`
+
 將指定分支的變更合併到當前分支。
+
 ```bash
 git merge <branch-name>
 ```
 
 ### `git cherry-pick <commit-hash>`
+
 將指定的 commit 複製到當前分支。
+
 ```bash
 git cherry-pick <commit-hash>
 ```
 
 ### `git rebase <branch-name>`
+
 將當前分支的 commit "重新"接到另一個分支的頂端。
+
 ```bash
 git rebase <branch-name>
 ```
 
 ### `git rebase -i <commit-hash>`
+
 互動式 rebase，可以修改、合併、重新排序 commit。
+
 ```bash
 git rebase -i <commit-hash>
 ```
 
 ### rebase 衝突處理
+
 當 rebase 發生衝突時，手動解決檔案衝突後，使用以下指令：
+
 ```bash
 # 將解決衝突的檔案加入暫存區
 git add .
@@ -187,7 +220,9 @@ git rebase --abort
 ## 5. Reviewing History & Changes (檢視歷史與變更)
 
 ### `git log`
+
 查看 commit 記錄。
+
 ```bash
 # 查看詳細記錄
 git log
@@ -200,13 +235,17 @@ git log --merges --grep="feature/abc"
 ```
 
 ### `git reflog`
+
 查看 HEAD 的移動記錄，包含所有分支和 `reset` 的操作。
+
 ```bash
 git reflog
 ```
 
 ### `git diff`
+
 比較不同狀態之間的差異。
+
 ```bash
 # 比較工作區和暫存區的差異
 git diff
@@ -227,7 +266,9 @@ git diff --name-only main...branch_future
 ## 6. Undoing Changes (還原變更)
 
 ### `git restore`
+
 還原工作區的檔案。
+
 ```bash
 # 還原工作區的檔案 (捨棄變更)
 git restore [檔案或資料夾]
@@ -237,7 +278,9 @@ git restore --staged [檔案或資料夾]
 ```
 
 ### `git reset`
+
 重置當前 HEAD 到指定的狀態。
+
 ```bash
 # 將所有檔案移出暫存區
 git reset
@@ -256,7 +299,9 @@ git reset --hard <commit-hash>
 ```
 
 ### `git clean`
+
 刪除工作區中**未追蹤 (untracked)** 的檔案或資料夾。
+
 ```bash
 # 預覽會刪除哪些檔案（dry run，不會真的刪除）
 git clean -n
@@ -272,7 +317,9 @@ git clean -fx
 ```
 
 ### `git revert <commit-hash>`
+
 建立一個新的 commit 來撤銷指定 commit 的變更。這是一種安全、不會改寫歷史的還原方式，適用於已推送到遠端分支的 commit。
+
 ```bash
 # 還原指定的 commit
 git revert <commit-hash>
@@ -282,6 +329,7 @@ git revert --no-commit <commit-hash>
 ```
 
 ## 7. Stashing (暫存)
+
 暫時儲存工作區和暫存區的變更。
 
 ```bash
@@ -314,6 +362,7 @@ git stash clear
 ```
 
 ## 8. Tagging (標籤)
+
 為特定的 commit 加上標籤，常用於版本發布。
 
 ```bash
@@ -343,6 +392,7 @@ git push <remote-name> --delete <tag-name>
 ```
 
 > **與 Composer 的關係**：將 tag 推送至 GitHub 後，若套件已發布於 [Packagist](https://packagist.org/)，Packagist 會自動同步該 tag 作為版本號。Composer 即可透過版本約束安裝指定版本：
+>
 > ```bash
 > composer require vendor/package:^1.0.0
 > ```
@@ -360,6 +410,7 @@ git rm --cached -r <folder>
 ```
 
 ### `.gitignore`
+
 在專案根目錄建立一個名為 `.gitignore` 的檔案，用來告訴 Git 哪些檔案或目錄應該被忽略，不納入版本控制。
 
 ```gitignore

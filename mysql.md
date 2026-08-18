@@ -11,28 +11,36 @@
 
 ---
 
-# MySQL 交易隔離級別 (Transaction Isolation Level)
+## MySQL 交易隔離級別 (Transaction Isolation Level)
 
 ## 1. 讀未提交 (Read Uncommitted)
+
 最低的隔離級別，允許讀取其他事務尚未提交的變更，可能導致髒讀 (Dirty Read)。
+
 - **效能**：最高，因為不需要加鎖，不會阻止其他事務。
 - **鎖資料**：否。
 - **適用場景**：對數據一致性要求極低，追求極致效能的場景 (如簡單的數據分析)。
 
 ## 2. 讀已提交 (Read Committed)
+
 保證只能讀取其他事務已提交的數據，避免髒讀，但可能出現不可重複讀 (Non-repeatable Read)。
+
 - **效能**：相對較高，開銷低於更高隔離級別。
 - **鎖資料**：部分鎖定。讀取時加共享鎖，修改時加排他鎖。
 - **適用場景**：大部分日常應用的理想選擇 (如 OLTP 系統)。
 
 ## 3. 可重複讀 (Repeatable Read)
+
 保證同一事務內多次讀取相同數據的結果一致，避免髒讀與不可重複讀。MySQL InnoDB 的默認隔離級別。
+
 - **效能**：略低於 `READ COMMITTED`，因為需要維持一致性快照，並可能使用間隙鎖 (Gap Lock) 來防止幻讀 (Phantom Read)。
 - **鎖資料**：是。讀取時加共享鎖和間隙鎖，寫入時加排他鎖。
 - **適用場景**：MySQL 預設選擇，適合需要數據一致性但又需要一定性能的場景。
 
 ## 4. 可序列化 (Serializable)
+
 最高的隔離級別，通過強制事務順序執行，完全避免所有併發問題，但會大幅降低並發性能。
+
 - **效能**：最差，因為所有操作都會被序列化。
 - **鎖資料**：是。讀寫都會鎖定範圍內的所有數據。
 - **適用場景**：需要強一致性的極端場景 (如金融系統)。
@@ -50,7 +58,7 @@
 
 ---
 
-# MySQL 鎖機制 (Locking)
+## MySQL 鎖機制 (Locking)
 
 ## 主要鎖類型
 
@@ -73,9 +81,10 @@
 
 ---
 
-# MySQL 基礎指令
+## MySQL 基礎指令
 
 ## 連線與資料庫操作
+
 ```sql
 -- 登入 MySQL
 mysql -u your_username -p
@@ -94,6 +103,7 @@ DROP DATABASE database_name;
 ```
 
 ## 資料表操作 (DDL - Data Definition Language)
+
 ```sql
 -- 建立新資料表
 CREATE TABLE table_name (
@@ -116,6 +126,7 @@ DROP TABLE table_name;
 ```
 
 ## 資料操作 (DML - Data Manipulation Language)
+
 ```sql
 -- 新增資料
 INSERT INTO table_name (name, email, age) VALUES ('John Doe', 'john.doe@example.com', 30);
@@ -128,6 +139,7 @@ DELETE FROM table_name WHERE name = 'John Doe';
 ```
 
 ## 資料查詢 (DQL - Data Query Language)
+
 ```sql
 -- 查詢所有資料
 SELECT * FROM table_name;
@@ -152,7 +164,7 @@ JOIN orders o ON u.id = o.user_id;
 
 ---
 
-# 索引 (Indexing)
+## 索引 (Indexing)
 
 **索引是資料庫查詢效能的靈魂**。它是一種特殊的資料結構 (在 MySQL 中主要是 B-Tree)，能讓資料庫引擎快速地找到特定資料，而不需要逐行掃描整個資料表 (Full Table Scan)。良好的索引策略可以將查詢速度從 `O(n)` 提升到 `O(log n)`。
 
@@ -174,7 +186,8 @@ DROP INDEX idx_name ON table_name;
 
 ---
 
-# 資料表約束 (Constraints)
+## 資料表約束 (Constraints)
+
 約束用於確保資料庫中資料的準確性和可靠性。
 
 - **NOT NULL**: 確保欄位不能有 NULL 值。
@@ -198,7 +211,7 @@ CREATE TABLE orders (
 
 ---
 
-# 查詢優化與 EXPLAIN
+## 查詢優化與 EXPLAIN
 
 當您送出一個 SQL 查詢後，MySQL 內部的「查詢優化器」會分析並決定執行該查詢的最佳方式。`EXPLAIN` 指令可以讓我們了解優化器的決策過程，是診斷和優化慢查詢的必備工具。
 
@@ -208,6 +221,7 @@ EXPLAIN SELECT * FROM users WHERE age > 30;
 ```
 
 **解讀 `EXPLAIN` 的關鍵欄位：**
+
 - **`type`**: 連接類型，顯示查詢的效率。從最好到最差依次是 `system` > `const` > `eq_ref` > `ref` > `range` > `index` > `ALL`。`ALL` 表示全表掃描，應盡量避免。
 - **`key`**: 實際使用的索引。
 - **`rows`**: 預估需要掃描的行數。
@@ -215,22 +229,24 @@ EXPLAIN SELECT * FROM users WHERE age > 30;
 
 ---
 
-# 複寫 (Replication)
+## 複寫 (Replication)
 
 複寫是將一台資料庫 (Master) 的資料，即時、非同步地複製到一台或多台其他資料庫 (Slave) 的過程。這是透過 Master 寫入 Binary Log (binlog)，Slave 讀取並重放這些日誌來實現的。
 
 **主要用途：**
-1.  **讀寫分離 (Read-Write Splitting)**: 將寫入操作集中在 Master，將讀取操作分散到多個 Slaves，以擴展系統的讀取能力。
-2.  **高可用性 (High Availability)**: 當 Master 發生故障時，可以手動或自動將其中一個 Slave 提升為新的 Master，減少系統停機時間。
-3.  **資料備份**: 可以在 Slave 上進行備份操作，而不會影響 Master 的效能。
+
+1. **讀寫分離 (Read-Write Splitting)**: 將寫入操作集中在 Master，將讀取操作分散到多個 Slaves，以擴展系統的讀取能力。
+2. **高可用性 (High Availability)**: 當 Master 發生故障時，可以手動或自動將其中一個 Slave 提升為新的 Master，減少系統停機時間。
+3. **資料備份**: 可以在 Slave 上進行備份操作，而不會影響 Master 的效能。
 
 ---
 
-# 備份與還原 (Backup-and-Recovery)
+## 備份與還原 (Backup-and-Recovery)
 
 資料是系統的核心資產，建立可靠的備份與還原機制至關重要。
 
 ## 邏輯備份 (Logical Backup)
+
 備份的是 SQL 陳述句 (`CREATE TABLE`, `INSERT INTO` ...)。
 
 - **工具**: `mysqldump`
@@ -238,12 +254,12 @@ EXPLAIN SELECT * FROM users WHERE age > 30;
 - **缺點**: 備份和還原速度較慢。
 
 ```bash
-# 備份整個資料庫
+## 備份整個資料庫
 mysqldump -u [user] -p [database_name] > backup.sql
 
-# 僅備份單一資料表
+## 僅備份單一資料表
 mysqldump -u [user] -p [database_name] [table_name] > backup_table.sql
 
-# 還原資料庫
+## 還原資料庫
 mysql -u [user] -p [database_name] < backup.sql
 ```

@@ -1,7 +1,8 @@
 # 程式命名規範大全（Engineering Naming Convention Guide）
+
 ---
 
-# 一、動作類（Action / Command）
+## 一、動作類（Action / Command）
 
 用於「會產生副作用」的方法。
 
@@ -26,7 +27,7 @@
 
 ---
 
-# 二、查詢類（Query）
+## 二、查詢類（Query）
 
 用於 **只讀資料，不改變狀態**。
 
@@ -42,7 +43,7 @@
 
 ---
 
-# 三、Boolean 判斷類（Predicate）
+## 三、Boolean 判斷類（Predicate）
 
 回傳 `true / false`
 
@@ -59,7 +60,7 @@
 
 ---
 
-# 四、資料轉換（Transform）
+## 四、資料轉換（Transform）
 
 資料轉換或解析。
 
@@ -75,7 +76,7 @@
 
 ---
 
-# 五、屬性 / 狀態命名
+## 五、屬性 / 狀態命名
 
 用於變數、DTO、Model 欄位。
 
@@ -95,7 +96,7 @@
 
 ---
 
-# 六、集合命名（Collection）
+## 六、集合命名（Collection）
 
 表示多筆資料。
 
@@ -108,7 +109,7 @@
 
 ---
 
-# 七、Getter / Setter
+## 七、Getter / Setter
 
 封裝物件屬性。
 
@@ -121,7 +122,7 @@
 
 ---
 
-# 八、初始化 / Lifecycle
+## 八、初始化 / Lifecycle
 
 物件生命週期。
 
@@ -136,7 +137,7 @@
 
 ---
 
-# 九、事件 / Callback
+## 九、事件 / Callback
 
 事件命名。
 
@@ -149,7 +150,7 @@
 
 ---
 
-# 十、測試命名（Testing）
+## 十、測試命名（Testing）
 
 測試名稱應「可讀即文件」。
 
@@ -162,7 +163,7 @@
 
 ---
 
-# 十一、架構層命名（Architecture Naming）
+## 十一、架構層命名（Architecture Naming）
 
 常見於大型系統。
 
@@ -181,7 +182,7 @@
 
 ---
 
-# 十二、DTO / VO / Entity 命名
+## 十二、DTO / VO / Entity 命名
 
 DDD 或分層架構常見。
 
@@ -194,7 +195,7 @@ DDD 或分層架構常見。
 
 ---
 
-# 十三、API 命名建議
+## 十三、API 命名建議
 
 RESTful API。
 
@@ -207,7 +208,7 @@ RESTful API。
 
 ---
 
-# 十四、常見命名反模式
+## 十四、常見命名反模式
 
 | 壞命名 | 問題 | 建議 |
 |-----|-----|-----|
@@ -219,7 +220,7 @@ RESTful API。
 
 ---
 
-# 命名最佳實務總結
+## 命名最佳實務總結
 
 | 原則 | 說明 | 範例 |
 |-----|-----|-----|
