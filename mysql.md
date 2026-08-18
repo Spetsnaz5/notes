@@ -13,6 +13,27 @@
 
 ## MySQL 交易隔離級別 (Transaction Isolation Level)
 
+### 為什麼需要隔離級別？
+
+多個交易同時執行時，可能發生以下問題：
+
+| 問題 | 說明 |
+| :--- | :--- |
+| **Dirty Read** | 讀到另一個交易**尚未提交**的資料 |
+| **Non-Repeatable Read** | 同一交易內兩次讀到**不同結果**（被別人修改了） |
+| **Phantom Read** | 同一交易內兩次查詢，**筆數不同**（被別人新增/刪除了） |
+
+### 四種隔離級別
+
+| 隔離級別 | Dirty Read | Non-Repeatable Read | Phantom Read |
+| :--- | :---: | :---: | :---: |
+| `READ UNCOMMITTED` | ❌ 會發生 | ❌ 會發生 | ❌ 會發生 |
+| `READ COMMITTED` | ✅ 防止 | ❌ 會發生 | ❌ 會發生 |
+| `REPEATABLE READ` | ✅ 防止 | ✅ 防止 | ⚠️ InnoDB 用 MVCC 防止 |
+| `SERIALIZABLE` | ✅ 防止 | ✅ 防止 | ✅ 防止 |
+
+> MySQL InnoDB 預設是 **REPEATABLE READ**。
+
 ## 1. 讀未提交 (Read Uncommitted)
 
 最低的隔離級別，允許讀取其他事務尚未提交的變更，可能導致髒讀 (Dirty Read)。
