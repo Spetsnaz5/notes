@@ -72,6 +72,7 @@ composer init
 - `description`: 專案的簡短描述。
 - `require`: **正式環境**需要的套件與版本約束。
 - `require-dev`: **開發環境**才需要的套件（例如測試工具）。
+  - 不加 `--dev`，預設放入 `require`（正式依賴）。
 - `autoload`: 設定 [PSR-4](https://www.php-fig.org/psr/psr-4/) 命名空間與目錄的對應，這是實現自動載入的關鍵。
 - `scripts`: 定義可以透過 `composer run-script` 執行的自定義指令，或在特定事件（如 `post-install-cmd`）後自動觸發的指令。
 - `config`: 用於調整 Composer 的行為，例如 `optimize-autoloader` 用於提升效能。
